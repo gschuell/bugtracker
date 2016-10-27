@@ -16,7 +16,7 @@ import java.util.List;
  * Created by gschuell on 10/17/16.
  */
 @RestController
-@RequestMapping(name="issues")
+@RequestMapping(value = "/issues")
 public class BugTrackerController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
