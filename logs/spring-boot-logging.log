@@ -1,0 +1,72 @@
+2016-10-26 11:54:44.474  INFO 18233 --- [main] com.rti.bugtracker.Application           : Starting Application on gschuell-VirtualBox with PID 18233 (/home/gschuell/SourceProjects/bugtracker/build/classes/main started by gschuell in /home/gschuell/SourceProjects/bugtracker)
+2016-10-26 11:54:44.485  INFO 18233 --- [main] com.rti.bugtracker.Application           : No active profile set, falling back to default profiles: default
+2016-10-26 11:54:44.825  INFO 18233 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:54:44 EDT 2016]; root of context hierarchy
+2016-10-26 11:54:48.748  INFO 18233 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7afd8f4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-10-26 11:54:49.802  INFO 18233 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-10-26 11:54:49.835  INFO 18233 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-10-26 11:54:49.836  INFO 18233 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2016-10-26 11:54:50.078  INFO 18233 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-10-26 11:54:50.078  INFO 18233 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5278 ms
+2016-10-26 11:54:50.475  INFO 18233 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2016-10-26 11:54:50.482  INFO 18233 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-10-26 11:54:50.482  INFO 18233 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-10-26 11:54:50.482  INFO 18233 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-10-26 11:54:50.488  INFO 18233 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2016-10-26 11:54:50.901 ERROR 18233 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : Created dataSource [oracle.jdbc.pool.OracleDataSource@ebe067d]
+2016-10-26 11:54:50.906 ERROR 18233 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : URL used is [jdbc:oracle:thin:@//devdb01.rti.com:1521/devdb01], username is [bugsadmin] and password is [money8]
+2016-10-26 11:54:51.033 ERROR 18233 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : Now we have DataSource ==> oracle.jdbc.pool.OracleDataSource@ebe067d
+2016-10-26 11:54:51.054  INFO 18233 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-10-26 11:54:53.205  INFO 18233 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-10-26 11:54:53.911 ERROR 18233 --- [main] c.r.b.service.BugTrackerController       : Entering BugTrackerController constructor armIssues = [com.rti.bugtracker.domain.AmrIssuesEntity@f47fd0f9]
+2016-10-26 11:54:54.756  INFO 18233 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:54:44 EDT 2016]; root of context hierarchy
+2016-10-26 11:54:54.901  INFO 18233 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/{bugId}],methods=[GET],produces=[application/json]}" onto public com.rti.bugtracker.domain.AmrIssuesEntity com.rti.bugtracker.service.BugTrackerController.showIssue(long)
+2016-10-26 11:54:54.902  INFO 18233 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/allissues],methods=[GET],produces=[application/json]}" onto public java.util.List<com.rti.bugtracker.domain.AmrIssuesEntity> com.rti.bugtracker.service.BugTrackerController.showAllIssues()
+2016-10-26 11:54:54.906  INFO 18233 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-10-26 11:54:54.906  INFO 18233 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-10-26 11:54:54.995  INFO 18233 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:54:54.996  INFO 18233 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:54:55.118  INFO 18233 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:54:55.622  INFO 18233 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-10-26 11:54:55.696  INFO 18233 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-10-26 11:54:55.704  INFO 18233 --- [main] com.rti.bugtracker.Application           : Started Application in 13.083 seconds (JVM running for 14.586)
+2016-10-26 11:55:07.085  INFO 18233 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-10-26 11:55:07.090  INFO 18233 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-10-26 11:55:07.152  INFO 18233 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 62 ms
+2016-10-26 11:58:52.982  INFO 18233 --- [Thread-2] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:54:44 EDT 2016]; root of context hierarchy
+2016-10-26 11:58:52.987  INFO 18233 --- [Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2016-10-26 11:58:57.426  INFO 18351 --- [main] com.rti.bugtracker.Application           : Starting Application on gschuell-VirtualBox with PID 18351 (/home/gschuell/SourceProjects/bugtracker/build/classes/main started by gschuell in /home/gschuell/SourceProjects/bugtracker)
+2016-10-26 11:58:57.441  INFO 18351 --- [main] com.rti.bugtracker.Application           : No active profile set, falling back to default profiles: default
+2016-10-26 11:58:57.773  INFO 18351 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:58:57 EDT 2016]; root of context hierarchy
+2016-10-26 11:59:01.517  INFO 18351 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f7afd8f4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-10-26 11:59:02.582  INFO 18351 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-10-26 11:59:02.615  INFO 18351 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-10-26 11:59:02.618  INFO 18351 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2016-10-26 11:59:02.891  INFO 18351 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-10-26 11:59:02.892  INFO 18351 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5157 ms
+2016-10-26 11:59:03.344  INFO 18351 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2016-10-26 11:59:03.374  INFO 18351 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-10-26 11:59:03.375  INFO 18351 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-10-26 11:59:03.375  INFO 18351 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-10-26 11:59:03.376  INFO 18351 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2016-10-26 11:59:03.815 ERROR 18351 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : Created dataSource [oracle.jdbc.pool.OracleDataSource@ebe067d]
+2016-10-26 11:59:03.823 ERROR 18351 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : URL used is [jdbc:oracle:thin:@//devdb01.rti.com:1521/devdb01], username is [bugsadmin] and password is [money8]
+2016-10-26 11:59:03.996 ERROR 18351 --- [main] uration$$EnhancerBySpringCGLIB$$66309a75 : Now we have DataSource ==> oracle.jdbc.pool.OracleDataSource@ebe067d
+2016-10-26 11:59:04.057  INFO 18351 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-10-26 11:59:06.329  INFO 18351 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-10-26 11:59:07.281 ERROR 18351 --- [main] c.r.b.service.BugTrackerController       : Entering BugTrackerController constructor armIssues = [com.rti.bugtracker.domain.AmrIssuesEntity@f47fd0f9]
+2016-10-26 11:59:08.570  INFO 18351 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:58:57 EDT 2016]; root of context hierarchy
+2016-10-26 11:59:08.742  INFO 18351 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/{bugId}],methods=[GET],produces=[application/json]}" onto public com.rti.bugtracker.domain.AmrIssuesEntity com.rti.bugtracker.service.BugTrackerController.showIssue(long)
+2016-10-26 11:59:08.744  INFO 18351 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/allissues],methods=[GET],produces=[application/json]}" onto public java.util.List<com.rti.bugtracker.domain.AmrIssuesEntity> com.rti.bugtracker.service.BugTrackerController.showAllIssues()
+2016-10-26 11:59:08.748  INFO 18351 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-10-26 11:59:08.748  INFO 18351 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-10-26 11:59:08.863  INFO 18351 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:59:08.864  INFO 18351 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:59:08.979  INFO 18351 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-10-26 11:59:09.611  INFO 18351 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-10-26 11:59:09.731  INFO 18351 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-10-26 11:59:09.735  INFO 18351 --- [main] com.rti.bugtracker.Application           : Started Application in 13.82 seconds (JVM running for 15.22)
+2016-10-26 11:59:32.848  INFO 18351 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-10-26 11:59:32.849  INFO 18351 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-10-26 11:59:32.889  INFO 18351 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 39 ms
+2016-10-26 12:00:31.278  INFO 18351 --- [Thread-2] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@384ad17b: startup date [Wed Oct 26 11:58:57 EDT 2016]; root of context hierarchy
+2016-10-26 12:00:31.282  INFO 18351 --- [Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
