@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+    <!-- #INCLUDE FILE="include/config.asp" -->
+    <%  Session("MainMenu") = "bugadmin.asp" %>
+    <TITLE><%=PROJECT_LABEL%> Issue Admin Main Menu</TITLE>
+</HEAD>
+<body text="black" leftmargin=5 topmargin=5>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr>
+        <td width="121"><img src="/images/amr_01a.gif" width="121" height="89" border="0" alt=""></td>
+        <td width="100%"><img src="/images/amr_02.gif" width="100%" height="89" border="0" alt=""></td>
+        <td width="467"><img src="/images/amr_03.gif" width="467" height="89" border="0" alt=""></td>
+    </tr>
+</table>
+<hr>
+<center>
+    <h1><%=PROJECT_LABEL%> Issue Tracking </h1>
+    <a href="AddIssue.asp">Add Issues</a><br><br>
+    <a href="AdminDisplayIssues.asp">Display Issues For Edit</a><br><br>
+    <a href="AdminDisplayIssues2.asp">Display Issues (the Keith way) For Edit</a><br><br>
+    <a href="BugSummary.asp">Issue Count Summary</a><br><br>
+    <a href="BugSummary2.asp">Issue Count Summary By Status and Problem Type</a><br><br>
+    <a href="BugSummary3.asp">Issue Count Summary By Status Only</a><br><br>
+    <a href="BugSummary4.asp">Issue Count Summary By Problem Type Only</a><br><br>
+    <a href="AddCategory.asp">Add A New Resolution Type</a><br><br>
+    <a href="ShowProblemTypes.asp">Show Resolution Types</a><br><br>
+    <a href="AddUser.asp">Add A New User</a><br><br>
+    <a href="ShowUsers.asp">Show Users</a><br><br>
+
+    <P>&nbsp;</P>
+
+</BODY>
+</HTML>

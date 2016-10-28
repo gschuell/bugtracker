@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -51,7 +52,7 @@ public class ApplicationConfiguration {
     private String towerUsername;
 
     @Value("${tower.password}")
-    private String towerPpassword;
+    private String towerPassword;
 
     @Value("${tower.url}")
     private String towerUrl;
@@ -90,7 +91,8 @@ public class ApplicationConfiguration {
                 return DataSourceBuilder.create().build();
             }
 */
-     @Bean
+    @Bean
+    @Primary
     @ConfigurationProperties("amrdcissues")
     DataSource amrIssuesDataSource() throws SQLException {
 
@@ -103,6 +105,22 @@ public class ApplicationConfiguration {
         log.info("Created dataSource [{}]", dataSource);
         log.info("URL used is [{}], username is [{}] and password is [{}]", amrdcIssuesUrl,
                 amrdcIssuesUsername, amrdcissuesPassword);
+        return dataSource;
+    }
+
+    @Bean
+    @ConfigurationProperties("tower")
+    DataSource towerDataSource() throws SQLException {
+
+        OracleDataSource dataSource = new OracleDataSource();
+        dataSource.setUser(towerUsername);
+        dataSource.setPassword(towerPassword);
+        dataSource.setURL(towerUrl);
+        dataSource.setImplicitCachingEnabled(true);
+        dataSource.setFastConnectionFailoverEnabled(true);
+        log.info("Created dataSource [{}]", dataSource);
+        log.info("URL used is [{}], username is [{}] and password is [{}]", towerUrl,
+                towerUsername, towerPassword);
         return dataSource;
     }
 
