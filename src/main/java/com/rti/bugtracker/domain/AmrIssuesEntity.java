@@ -14,51 +14,51 @@ public class AmrIssuesEntity {
     private long bugId;
     @Column(name = "BUG_ENTERED_DATE", nullable = false)
     private Time bugEnteredDate;
-    @Column(name = "BUG_FIXED_DATE", nullable = false)
+    @Column(name = "BUG_FIXED_DATE", nullable = true)
     private Time bugFixedDate;
-    @Column(name = "BUG_PRACTICE", nullable = false, length = 3)
+    @Column(name = "BUG_PRACTICE", nullable = true, length = 3)
     private String bugPractice;
-    @Column(name = "BUG_DIVISION", nullable = false, length = 3)
+    @Column(name = "BUG_DIVISION", nullable = true, length = 3)
     private String bugDivision;
-    @Column(name = "BUG_DATE_OF_SERVICE", nullable = false)
+    @Column(name = "BUG_DATE_OF_SERVICE", nullable = true)
     private Time bugDateOfService;
-    @Column(name = "BUG_ACTIVITY", nullable = false, length = 31)
+    @Column(name = "BUG_ACTIVITY", nullable = true, length = 31)
     private String bugActivity;
-    @Column(name = "BUG_TITLE", nullable = false, length = 40)
+    @Column(name = "BUG_TITLE", nullable = true, length = 40)
     private String bugTitle;
     @Column(name = "BUG_DESIRED_ACTION", nullable = false, length = 1000)
     private String bugDesiredAction;
-    @Column(name = "BUG_RESULT", nullable = false, length = 1000)
+    @Column(name = "BUG_RESULT", nullable = true, length = 1000)
     private String bugResult;
-    @Column(name = "BUG_STATUS", nullable = false, length = 20)
+    @Column(name = "BUG_STATUS", nullable = true, length = 20)
     private String bugStatus;
-    @Column(name = "REPORTED_BY_FIRSTNAME", nullable = false, length = 20)
+    @Column(name = "REPORTED_BY_FIRSTNAME", nullable = true, length = 20)
     private String reportedByFirstname;
-    @Column(name = "REPORTED_BY_LASTNAME", nullable = false, length = 20)
+    @Column(name = "REPORTED_BY_LASTNAME", nullable = true, length = 20)
     private String reportedByLastname;
-    @Column(name = "FIXED_BY_FIRSTNAME", nullable = false, length = 20)
+    @Column(name = "FIXED_BY_FIRSTNAME", nullable = true, length = 20)
     private String fixedByFirstname;
-    @Column(name = "FIXED_BY_LASTNAME", nullable = false, length = 20)
+    @Column(name = "FIXED_BY_LASTNAME", nullable = true, length = 20)
     private String fixedByLastname;
-    @Column(name = "FIX_DESCRIPTION", nullable = false, length = 1000)
+    @Column(name = "FIX_DESCRIPTION", nullable = true, length = 1000)
     private String fixDescription;
-    @Column(name = "BUG_COMMENTS", nullable = false, length = 1000)
+    @Column(name = "BUG_COMMENTS", nullable = true, length = 1000)
     private String bugComments;
-    @Column(name = "USER_LOGIN", nullable = false, length = 30)
+    @Column(name = "USER_LOGIN", nullable = true, length = 30)
     private String userLogin;
     @Column(name = "BUG_CATEGORY", nullable = false, length = 40)
     private String bugCategory;
-    @Column(name = "BUG_DESIRED_RESULT", nullable = false, length = 1000)
+    @Column(name = "BUG_DESIRED_RESULT", nullable = true, length = 1000)
     private String bugDesiredResult;
-    @Column(name = "BUG_DISCOVERED_DATE", nullable = false)
+    @Column(name = "BUG_DISCOVERED_DATE", nullable = true)
     private Time bugDiscoveredDate;
-    @Column(name = "ASSIGNED_TO", nullable = false, length = 40)
+    @Column(name = "ASSIGNED_TO", nullable = true, length = 40)
     private String assignedTo;
-    @Column(name = "BUG_PRIORITY", nullable = false, length = 20)
+    @Column(name = "BUG_PRIORITY", nullable = true, length = 20)
     private String bugPriority;
-    @Column(name = "BUG_REGION", nullable = false, length = 4)
+    @Column(name = "BUG_REGION", nullable = true, length = 4)
     private String bugRegion;
-    @Column(name = "ASSIGNED_TO_2", nullable = false, length = 40)
+    @Column(name = "ASSIGNED_TO_2", nullable = true, length = 40)
     private String assignedTo2;
     @Column(name = "ASSIGNED_TO_3", nullable = false, length = 40)
     private String assignedTo3;
