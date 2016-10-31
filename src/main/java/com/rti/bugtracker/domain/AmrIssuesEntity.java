@@ -1,7 +1,7 @@
 package com.rti.bugtracker.domain;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Created by gschuell on 10/14/16.
@@ -13,15 +13,15 @@ public class AmrIssuesEntity {
     @Column(name = "BUG_ID", nullable = false, precision = 0)
     private long bugId;
     @Column(name = "BUG_ENTERED_DATE", nullable = false)
-    private Time bugEnteredDate;
+    private Timestamp bugEnteredDate;
     @Column(name = "BUG_FIXED_DATE", nullable = true)
-    private Time bugFixedDate;
+    private Timestamp bugFixedDate;
     @Column(name = "BUG_PRACTICE", nullable = true, length = 3)
     private String bugPractice;
     @Column(name = "BUG_DIVISION", nullable = true, length = 3)
     private String bugDivision;
     @Column(name = "BUG_DATE_OF_SERVICE", nullable = true)
-    private Time bugDateOfService;
+    private Timestamp bugDateOfService;
     @Column(name = "BUG_ACTIVITY", nullable = true, length = 31)
     private String bugActivity;
     @Column(name = "BUG_TITLE", nullable = true, length = 40)
@@ -51,7 +51,7 @@ public class AmrIssuesEntity {
     @Column(name = "BUG_DESIRED_RESULT", nullable = true, length = 1000)
     private String bugDesiredResult;
     @Column(name = "BUG_DISCOVERED_DATE", nullable = true)
-    private Time bugDiscoveredDate;
+    private Timestamp bugDiscoveredDate;
     @Column(name = "ASSIGNED_TO", nullable = true, length = 40)
     private String assignedTo;
     @Column(name = "BUG_PRIORITY", nullable = true, length = 20)
@@ -72,19 +72,22 @@ public class AmrIssuesEntity {
         this.bugId = bugId;
     }
 
-    public Time getBugEnteredDate() {
-        return bugEnteredDate;
+    public String getBugEnteredDate() {
+        return bugEnteredDate.toString();
     }
 
-    public void setBugEnteredDate(Time bugEnteredDate) {
+    public void setBugEnteredDate(Timestamp bugEnteredDate) {
         this.bugEnteredDate = bugEnteredDate;
     }
 
-    public Time getBugFixedDate() {
-        return bugFixedDate;
+    public String getBugFixedDate() {
+        if (bugFixedDate == null) {
+            return " ";
+        }
+        return bugFixedDate.toString();
     }
 
-    public void setBugFixedDate(Time bugFixedDate) {
+    public void setBugFixedDate(Timestamp bugFixedDate) {
         this.bugFixedDate = bugFixedDate;
     }
 
@@ -104,11 +107,14 @@ public class AmrIssuesEntity {
         this.bugDivision = bugDivision;
     }
 
-    public Time getBugDateOfService() {
-        return bugDateOfService;
+    public String getBugDateOfService() {
+        if (bugDateOfService == null) {
+            return " ";
+        }
+        return bugDateOfService.toString();
     }
 
-    public void setBugDateOfService(Time bugDateOfService) {
+    public void setBugDateOfService(Timestamp bugDateOfService) {
         this.bugDateOfService = bugDateOfService;
     }
 
@@ -225,11 +231,14 @@ public class AmrIssuesEntity {
         this.bugDesiredResult = bugDesiredResult;
     }
 
-    public Time getBugDiscoveredDate() {
-        return bugDiscoveredDate;
+    public String getBugDiscoveredDate() {
+        if (bugDiscoveredDate == null) {
+            return " ";
+        }
+        return bugDiscoveredDate.toString();
     }
 
-    public void setBugDiscoveredDate(Time bugDiscoveredDate) {
+    public void setBugDiscoveredDate(Timestamp bugDiscoveredDate) {
         this.bugDiscoveredDate = bugDiscoveredDate;
     }
 

@@ -29,7 +29,6 @@ import java.sql.SQLException;
 
 @Configuration
 @EnableAutoConfiguration
-//@EnableJpaRepositories
 @ComponentScan("com.rti.bugtracker")
 @EntityScan(basePackages = {"com.rti.bugtracker"})
 @EnableJpaRepositories(basePackages = {"com.rti.bugtracker"})
