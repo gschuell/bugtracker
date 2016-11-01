@@ -2,3 +2,5 @@
 *.war
 *.class
 build/**
+**/.idea/workspace.xml
+**/.idea/tasks.iml
