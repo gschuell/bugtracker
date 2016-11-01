@@ -8,4 +8,6 @@
 **/.idea/librariews
 .gradle
 "~/"
+out/*
+logs/*
 
