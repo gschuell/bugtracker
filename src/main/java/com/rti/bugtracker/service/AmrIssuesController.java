@@ -2,8 +2,7 @@ package com.rti.bugtracker.service;
 
 import com.rti.bugtracker.domain.AmrIssues;
 import com.rti.bugtracker.domain.AmrIssuesEntity;
-import com.rti.bugtracker.util.AmrIssueComparators;
-import com.rti.bugtracker.util.ComparatorStore;
+import com.rti.bugtracker.util.AmrIssuesComparators;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +26,11 @@ public class AmrIssuesController {
 
     private AmrIssues amrIssues;
 
-    private ComparatorStore comparators;
+    private AmrIssuesComparators comparators;
 
 
     @Autowired
-    public AmrIssuesController(AmrIssues amrIssues, ComparatorStore comparators) {
+    public AmrIssuesController(AmrIssues amrIssues, AmrIssuesComparators comparators) {
         this.amrIssues = amrIssues;
         this.comparators = comparators;
         log.info("Entering BugTrackerController constructor armIssues.");
@@ -72,10 +71,10 @@ public class AmrIssuesController {
     public List<AmrIssuesEntity> showAllIssues(@PathVariable("sortType") String sortType) {
         log.info("Value of amrIssues [{}]", amrIssues);
         List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findAll());
-        log.info("Sorting results on sort type {}", sortType);
-        Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
+        //log.info("Sorting results on sort type {}", comparators.getComparator(sortType).toString());
+        //Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
         return (List<AmrIssuesEntity>) issues.parallelStream()
-                .sorted((AmrIssueComparators) comparators.getComparator(sortType))
+                .sorted(comparators.getComparators(sortType))
                 .collect(Collectors.toList());
     }
 

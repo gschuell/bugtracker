@@ -7,7 +7,7 @@ import java.util.Comparator;
 /**
  * Created by gschuell on 11/1/16.
  */
-public interface AmrIssueComparators extends Comparator<AmrIssuesEntity> {
+public interface AmrIssuesComparators extends Comparator<AmrIssuesEntity> {
 
 
     @Override
@@ -15,4 +15,7 @@ public interface AmrIssueComparators extends Comparator<AmrIssuesEntity> {
 
     @Override
     boolean equals(Object obj);
+
+    public Comparator getComparators( );
+
 }

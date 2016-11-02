@@ -7,10 +7,16 @@ import java.util.Comparator;
 /**
  * Created by gschuell on 11/1/16.
  */
-public class AmrIssuesCategoryComparatorImpl implements AmrIssueComparators {
+public class AmrIssuesCategoryComparatorImpl implements AmrIssuesComparators {
 
-    public final Comparator<AmrIssuesEntity> statusComparator =
+    public final Comparator<AmrIssuesEntity> comparator =
             (e1, e2) -> (e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
+
+    public Comparator getComparators(String types) {
+        return comparator;
+    }
+
+
 
     @Override
     public int compare(AmrIssuesEntity o1, AmrIssuesEntity o2) {
