@@ -13,7 +13,7 @@ public class AmrIssuesStatusComparatorImpl implements AmrIssuesComparators {
             (e1, e2) -> (e1.getBugStatus().compareToIgnoreCase(e2.getBugStatus()));
 
 
-    public Comparator getComparators(String type) {
+    public Comparator getComparators() {
         return comparator;
     }
 

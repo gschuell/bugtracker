@@ -16,6 +16,7 @@ public class AmrIssuesBugidComparatorImpl implements AmrIssuesComparators {
 
     }
 
+    @Override
     public Comparator getComparators() {
         return comparator;
     }

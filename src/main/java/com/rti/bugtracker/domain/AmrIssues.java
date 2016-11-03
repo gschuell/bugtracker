@@ -16,5 +16,8 @@ public interface AmrIssues extends JpaRepository<AmrIssuesEntity, Long> {
 
     @Query("select Distinct amr.userLogin from #{#entityName} amr")
     List<String> findUserLogins();
+
+    //@Query("select * from #{#entityName} amr order by :sequence")
+    //List<AmrIssuesEntity>findByBugIdOrderByBugIdAsc();
 }
 

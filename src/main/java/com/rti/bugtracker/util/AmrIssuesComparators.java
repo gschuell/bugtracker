@@ -16,6 +16,6 @@ public interface AmrIssuesComparators extends Comparator<AmrIssuesEntity> {
     @Override
     boolean equals(Object obj);
 
-    public Comparator getComparators( );
+    public Comparator getComparators();
 
 }

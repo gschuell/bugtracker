@@ -2,7 +2,7 @@ package com.rti.bugtracker.service;
 
 import com.rti.bugtracker.domain.AmrIssues;
 import com.rti.bugtracker.domain.AmrIssuesEntity;
-import com.rti.bugtracker.util.AmrIssuesComparators;
+import com.rti.bugtracker.util.AmrIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +23,21 @@ public class AmrIssuesController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    public enum SortTypes {
+        BUGID,
+        CATEGORY,
+        STATUS
+    }
+
 
     private AmrIssues amrIssues;
 
-    private AmrIssuesComparators comparators;
-
+    private AmrIssuesComparatorStore amrIssuesComparatorStore;
 
     @Autowired
-    public AmrIssuesController(AmrIssues amrIssues, AmrIssuesComparators comparators) {
+    public AmrIssuesController(AmrIssues amrIssues) {
         this.amrIssues = amrIssues;
-        this.comparators = comparators;
+       // this.amrIssuesComparatorStore = amrIssuesComparatorStore;
         log.info("Entering BugTrackerController constructor armIssues.");
     }
 
@@ -67,15 +72,18 @@ public class AmrIssuesController {
      * @return List<AmrIssuesEntity>
      */
 
-    @RequestMapping(value = "/allissues/{sortType}", method = RequestMethod.GET, produces = "application/json")
-    public List<AmrIssuesEntity> showAllIssues(@PathVariable("sortType") String sortType) {
+    @RequestMapping(value = "/allissues", method = RequestMethod.GET, produces = "application/json")
+    public List<AmrIssuesEntity> showAllIssues() {
         log.info("Value of amrIssues [{}]", amrIssues);
         List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findAll());
+        Comparator<AmrIssuesEntity> comparator = getComparator(SortTypes.BUGID);
+         //       (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
         //log.info("Sorting results on sort type {}", comparators.getComparator(sortType).toString());
-        //Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
-        return (List<AmrIssuesEntity>) issues.parallelStream()
-                .sorted(comparators.getComparators(sortType))
-                .collect(Collectors.toList());
+       // Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
+       // return issues;
+
+       return (List<AmrIssuesEntity>) issues.stream().sorted(comparator)
+                   .collect(Collectors.toList());
     }
 
     /**
@@ -113,5 +121,23 @@ public class AmrIssuesController {
         return users;
     }
 
+    public Comparator<AmrIssuesEntity> getComparator(SortTypes type) {
+
+        Comparator<AmrIssuesEntity> comparator;
+
+        switch(type) {
+            case BUGID :
+                return  comparator =
+                    (e1, e2) -> ( (int)e1.getBugId() - ((int)e2.getBugId()));
+            case CATEGORY :
+                return  comparator =
+                        (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
+            case STATUS :
+                return  comparator =
+                        (e1, e2) -> (e1.getBugStatus().compareToIgnoreCase(e2.getBugStatus()));
+        }
+
+        return null;
+    }
 
 }

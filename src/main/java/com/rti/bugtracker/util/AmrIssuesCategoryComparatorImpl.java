@@ -12,10 +12,9 @@ public class AmrIssuesCategoryComparatorImpl implements AmrIssuesComparators {
     public final Comparator<AmrIssuesEntity> comparator =
             (e1, e2) -> (e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
 
-    public Comparator getComparators(String types) {
+    public Comparator getComparators() {
         return comparator;
     }
-
 
 
     @Override
