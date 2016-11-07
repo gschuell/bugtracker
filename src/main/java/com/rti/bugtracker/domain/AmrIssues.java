@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface AmrIssues extends JpaRepository<AmrIssuesEntity, Long> {
 
-    List<AmrIssuesEntity> findAll();
+    List<AmrIssuesEntity> findAllByOrderByBugIdAsc();
 
     List<AmrIssuesEntity> findByUserLogin(String userLogin);
 

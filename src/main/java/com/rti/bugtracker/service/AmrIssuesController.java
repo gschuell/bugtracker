@@ -44,7 +44,7 @@ public class AmrIssuesController {
     public AmrIssuesController() {}
 
     @RequestMapping(method = RequestMethod.GET)
-    public Map<String, Object> showMenu() {
+    public Map<String, Object> home() {
         Map<String,Object> model = new HashMap<String,Object>();
         model.put("id", UUID.randomUUID().toString());
         model.put("content", "Hello World");
@@ -74,7 +74,8 @@ public class AmrIssuesController {
 
     @RequestMapping(value = "/allissues", method = RequestMethod.GET, produces = "application/json")
     public List<AmrIssuesEntity> showAllIssues() {
-        log.info("Value of amrIssues [{}]", amrIssues);
+        log.info("Starting allAllIssues");
+        long startTime = System.currentTimeMillis();
         List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findAll());
         Comparator<AmrIssuesEntity> comparator = getComparator(SortTypes.BUGID);
          //       (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
@@ -82,8 +83,13 @@ public class AmrIssuesController {
        // Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
        // return issues;
 
-       return (List<AmrIssuesEntity>) issues.stream().sorted(comparator)
+        //List<AmrIssuesEntity> issuesList = amrIssues.findAllByOrderByBugIdAsc();
+
+
+       List<AmrIssuesEntity> issuesList = issues.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
+        log.info("Select finished in [{}] milliseconds.", System.currentTimeMillis() - startTime);
+        return issuesList;
     }
 
     /**

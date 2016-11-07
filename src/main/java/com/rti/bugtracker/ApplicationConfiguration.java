@@ -38,14 +38,14 @@ public class ApplicationConfiguration {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Value("${amrdcissues.username}")
-    private String amrdcIssuesUsername;
+    @Value("${amrissues.username}")
+    private String amrIssuesUsername;
 
-    @Value("${amrdcissues.password}")
-    private String amrdcissuesPassword;
+    @Value("${amrissues.password}")
+    private String amrissuesPassword;
 
-    @Value("${amrdcissues.url}")
-    private String amrdcIssuesUrl;
+    @Value("${amrissues.url}")
+    private String amrIssuesUrl;
 
     @Value("${tower.username}")
     private String towerUsername;
@@ -85,25 +85,25 @@ public class ApplicationConfiguration {
 
     /*
     @Bean
-    @ConfigurationProperties("amrdcissues")
+    @ConfigurationProperties("amrissues")
             public DataSource amrIssuesDataSource() {
                 return DataSourceBuilder.create().build();
             }
 */
     @Bean
     @Primary
-    @ConfigurationProperties("amrdcissues")
+    @ConfigurationProperties("amrissues")
     DataSource amrIssuesDataSource() throws SQLException {
 
         OracleDataSource dataSource = new OracleDataSource();
-        dataSource.setUser(amrdcIssuesUsername);
-        dataSource.setPassword(amrdcissuesPassword);
-        dataSource.setURL(amrdcIssuesUrl);
+        dataSource.setUser(amrIssuesUsername);
+        dataSource.setPassword(amrissuesPassword);
+        dataSource.setURL(amrIssuesUrl);
         dataSource.setImplicitCachingEnabled(true);
         dataSource.setFastConnectionFailoverEnabled(true);
         log.info("Created dataSource [{}]", dataSource);
-        log.info("URL used is [{}], username is [{}] and password is [{}]", amrdcIssuesUrl,
-                amrdcIssuesUsername, amrdcissuesPassword);
+        log.info("URL used is [{}], username is [{}] and password is [{}]", amrIssuesUrl,
+                amrIssuesUsername, amrissuesPassword);
         return dataSource;
     }
 
