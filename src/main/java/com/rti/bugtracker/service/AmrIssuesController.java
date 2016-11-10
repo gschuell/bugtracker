@@ -74,7 +74,7 @@ public class AmrIssuesController {
 
     @RequestMapping(value = "/allissues", method = RequestMethod.GET, produces = "application/json")
     public List<AmrIssuesEntity> showAllIssues() {
-        log.info("Starting allAllIssues");
+        log.info("Starting allIssues");
         long startTime = System.currentTimeMillis();
         List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findAll());
         Comparator<AmrIssuesEntity> comparator = getComparator(SortTypes.BUGID);
@@ -88,7 +88,7 @@ public class AmrIssuesController {
 
        List<AmrIssuesEntity> issuesList = issues.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
-        log.info("Select finished in [{}] milliseconds.", System.currentTimeMillis() - startTime);
+        log.info("Select finished allissues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
         return issuesList;
     }
 
