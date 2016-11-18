@@ -16,7 +16,7 @@ import java.util.List;
  * Created by gschuell on 11/14/16.
  */
 @Controller
-//@RequestMapping(value = "/issues")
+@RequestMapping(value = "/issues")
 public class UIController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -30,7 +30,7 @@ public class UIController {
 
     public UIController() {}
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public  String index(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
         List<AmrIssuesEntity> issues = new ArrayList<>();

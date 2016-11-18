@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -42,9 +44,7 @@ public class AmrIssuesController {
     }
 
     public AmrIssuesController() {}
-
-
-
+    
     /**
      * This endpoint accepts a bug ID and returns the bug in JSON format. If no bug exists,
      * null will be returned.
