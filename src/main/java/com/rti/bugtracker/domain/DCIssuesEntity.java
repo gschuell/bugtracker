@@ -7,8 +7,8 @@ import java.sql.Time;
  * Created by gschuell on 10/14/16.
  */
 @Entity
-@Table(name = "AMRDC_ISSUES", schema = "BUGSADMIN", catalog = "")
-public class AmrdcIssuesEntity {
+@Table(name = "DC_ISSUES", schema = "BUGSADMIN", catalog = "")
+public class DCIssuesEntity {
     @Id
     private long bugId;
     private Time bugEnteredDate;
@@ -225,7 +225,7 @@ public class AmrdcIssuesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AmrdcIssuesEntity that = (AmrdcIssuesEntity) o;
+        DCIssuesEntity that = (DCIssuesEntity) o;
 
         if (bugId != that.bugId) return false;
         if (bugEnteredDate != null ? !bugEnteredDate.equals(that.bugEnteredDate) : that.bugEnteredDate != null)

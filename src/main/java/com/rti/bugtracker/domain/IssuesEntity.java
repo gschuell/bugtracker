@@ -7,8 +7,8 @@ import java.sql.Timestamp;
  * Created by gschuell on 10/14/16.
  */
 @Entity
-@Table(name = "AMR_ISSUES", schema = "BUGSADMIN", catalog = "")
-public class AmrIssuesEntity {
+@Table(name = "ISSUES", schema = "BUGSADMIN", catalog = "")
+public class IssuesEntity {
     @Id
     @Column(name = "BUG_ID", nullable = false, precision = 0)
     private long bugId;
@@ -56,12 +56,7 @@ public class AmrIssuesEntity {
     private String assignedTo;
     @Column(name = "BUG_PRIORITY", nullable = true, length = 20)
     private String bugPriority;
-    @Column(name = "BUG_REGION", nullable = true, length = 4)
-    private String bugRegion;
-    @Column(name = "ASSIGNED_TO_2", nullable = true, length = 40)
-    private String assignedTo2;
-    @Column(name = "ASSIGNED_TO_3", nullable = false, length = 40)
-    private String assignedTo3;
+
 
 
     public long getBugId() {
@@ -215,7 +210,7 @@ public class AmrIssuesEntity {
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
-     public String getBugCategory() {
+    public String getBugCategory() {
         return bugCategory;
     }
 
@@ -258,105 +253,85 @@ public class AmrIssuesEntity {
         this.bugPriority = bugPriority;
     }
 
-    public String getBugRegion() {
-        return bugRegion;
-    }
-
-    public void setBugRegion(String bugRegion) {
-        this.bugRegion = bugRegion;
-    }
-
-    public String getAssignedTo2() {
-        return assignedTo2;
-    }
-
-    public void setAssignedTo2(String assignedTo2) {
-        this.assignedTo2 = assignedTo2;
-    }
-
-    public String getAssignedTo3() {
-        return assignedTo3;
-    }
-
-    public void setAssignedTo3(String assignedTo3) {
-        this.assignedTo3 = assignedTo3;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof IssuesEntity)) return false;
 
-        AmrIssuesEntity that = (AmrIssuesEntity) o;
+        IssuesEntity that = (IssuesEntity) o;
 
-        if (bugId != that.bugId) return false;
-        if (bugEnteredDate != null ? !bugEnteredDate.equals(that.bugEnteredDate) : that.bugEnteredDate != null)
+        if (getBugId() != that.getBugId()) return false;
+        if (getBugEnteredDate() != null ? !getBugEnteredDate().equals(that.getBugEnteredDate()) : that.getBugEnteredDate() != null)
             return false;
-        if (bugFixedDate != null ? !bugFixedDate.equals(that.bugFixedDate) : that.bugFixedDate != null) return false;
-        if (bugPractice != null ? !bugPractice.equals(that.bugPractice) : that.bugPractice != null) return false;
-        if (bugDivision != null ? !bugDivision.equals(that.bugDivision) : that.bugDivision != null) return false;
-        if (bugDateOfService != null ? !bugDateOfService.equals(that.bugDateOfService) : that.bugDateOfService != null)
+        if (getBugFixedDate() != null ? !getBugFixedDate().equals(that.getBugFixedDate()) : that.getBugFixedDate() != null)
             return false;
-        if (bugActivity != null ? !bugActivity.equals(that.bugActivity) : that.bugActivity != null) return false;
-        if (bugTitle != null ? !bugTitle.equals(that.bugTitle) : that.bugTitle != null) return false;
-        if (bugDesiredAction != null ? !bugDesiredAction.equals(that.bugDesiredAction) : that.bugDesiredAction != null)
+        if (getBugPractice() != null ? !getBugPractice().equals(that.getBugPractice()) : that.getBugPractice() != null)
             return false;
-        if (bugResult != null ? !bugResult.equals(that.bugResult) : that.bugResult != null) return false;
-        if (bugStatus != null ? !bugStatus.equals(that.bugStatus) : that.bugStatus != null) return false;
-        if (reportedByFirstname != null ? !reportedByFirstname.equals(that.reportedByFirstname) : that.reportedByFirstname != null)
+        if (getBugDivision() != null ? !getBugDivision().equals(that.getBugDivision()) : that.getBugDivision() != null)
             return false;
-        if (reportedByLastname != null ? !reportedByLastname.equals(that.reportedByLastname) : that.reportedByLastname != null)
+        if (getBugDateOfService() != null ? !getBugDateOfService().equals(that.getBugDateOfService()) : that.getBugDateOfService() != null)
             return false;
-        if (fixedByFirstname != null ? !fixedByFirstname.equals(that.fixedByFirstname) : that.fixedByFirstname != null)
+        if (getBugActivity() != null ? !getBugActivity().equals(that.getBugActivity()) : that.getBugActivity() != null)
             return false;
-        if (fixedByLastname != null ? !fixedByLastname.equals(that.fixedByLastname) : that.fixedByLastname != null)
+        if (getBugTitle() != null ? !getBugTitle().equals(that.getBugTitle()) : that.getBugTitle() != null)
             return false;
-        if (fixDescription != null ? !fixDescription.equals(that.fixDescription) : that.fixDescription != null)
+        if (getBugDesiredAction() != null ? !getBugDesiredAction().equals(that.getBugDesiredAction()) : that.getBugDesiredAction() != null)
             return false;
-        if (bugComments != null ? !bugComments.equals(that.bugComments) : that.bugComments != null) return false;
-        if (userLogin != null ? !userLogin.equals(that.userLogin) : that.userLogin != null) return false;
-        if (bugCategory != null ? !bugCategory.equals(that.bugCategory) : that.bugCategory != null) return false;
-        if (bugDesiredResult != null ? !bugDesiredResult.equals(that.bugDesiredResult) : that.bugDesiredResult != null)
+        if (getBugResult() != null ? !getBugResult().equals(that.getBugResult()) : that.getBugResult() != null)
             return false;
-        if (bugDiscoveredDate != null ? !bugDiscoveredDate.equals(that.bugDiscoveredDate) : that.bugDiscoveredDate != null)
+        if (getBugStatus() != null ? !getBugStatus().equals(that.getBugStatus()) : that.getBugStatus() != null)
             return false;
-        if (assignedTo != null ? !assignedTo.equals(that.assignedTo) : that.assignedTo != null) return false;
-        if (bugPriority != null ? !bugPriority.equals(that.bugPriority) : that.bugPriority != null) return false;
-        if (bugRegion != null ? !bugRegion.equals(that.bugRegion) : that.bugRegion != null) return false;
-        if (assignedTo2 != null ? !assignedTo2.equals(that.assignedTo2) : that.assignedTo2 != null) return false;
-        if (assignedTo3 != null ? !assignedTo3.equals(that.assignedTo3) : that.assignedTo3 != null) return false;
+        if (getReportedByFirstname() != null ? !getReportedByFirstname().equals(that.getReportedByFirstname()) : that.getReportedByFirstname() != null)
+            return false;
+        if (getReportedByLastname() != null ? !getReportedByLastname().equals(that.getReportedByLastname()) : that.getReportedByLastname() != null)
+            return false;
+        if (getFixedByFirstname() != null ? !getFixedByFirstname().equals(that.getFixedByFirstname()) : that.getFixedByFirstname() != null)
+            return false;
+        if (getFixedByLastname() != null ? !getFixedByLastname().equals(that.getFixedByLastname()) : that.getFixedByLastname() != null)
+            return false;
+        if (getFixDescription() != null ? !getFixDescription().equals(that.getFixDescription()) : that.getFixDescription() != null)
+            return false;
+        if (getBugComments() != null ? !getBugComments().equals(that.getBugComments()) : that.getBugComments() != null)
+            return false;
+        if (getUserLogin() != null ? !getUserLogin().equals(that.getUserLogin()) : that.getUserLogin() != null)
+            return false;
+        if (getBugCategory() != null ? !getBugCategory().equals(that.getBugCategory()) : that.getBugCategory() != null)
+            return false;
+        if (getBugDesiredResult() != null ? !getBugDesiredResult().equals(that.getBugDesiredResult()) : that.getBugDesiredResult() != null)
+            return false;
+        if (getBugDiscoveredDate() != null ? !getBugDiscoveredDate().equals(that.getBugDiscoveredDate()) : that.getBugDiscoveredDate() != null)
+            return false;
+        if (getAssignedTo() != null ? !getAssignedTo().equals(that.getAssignedTo()) : that.getAssignedTo() != null)
+            return false;
+        return getBugPriority() != null ? getBugPriority().equals(that.getBugPriority()) : that.getBugPriority() == null;
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (bugId ^ (bugId >>> 32));
-        result = 31 * result + (bugEnteredDate != null ? bugEnteredDate.hashCode() : 0);
-        result = 31 * result + (bugFixedDate != null ? bugFixedDate.hashCode() : 0);
-        result = 31 * result + (bugPractice != null ? bugPractice.hashCode() : 0);
-        result = 31 * result + (bugDivision != null ? bugDivision.hashCode() : 0);
-        result = 31 * result + (bugDateOfService != null ? bugDateOfService.hashCode() : 0);
-        result = 31 * result + (bugActivity != null ? bugActivity.hashCode() : 0);
-        result = 31 * result + (bugTitle != null ? bugTitle.hashCode() : 0);
-        result = 31 * result + (bugDesiredAction != null ? bugDesiredAction.hashCode() : 0);
-        result = 31 * result + (bugResult != null ? bugResult.hashCode() : 0);
-        result = 31 * result + (bugStatus != null ? bugStatus.hashCode() : 0);
-        result = 31 * result + (reportedByFirstname != null ? reportedByFirstname.hashCode() : 0);
-        result = 31 * result + (reportedByLastname != null ? reportedByLastname.hashCode() : 0);
-        result = 31 * result + (fixedByFirstname != null ? fixedByFirstname.hashCode() : 0);
-        result = 31 * result + (fixedByLastname != null ? fixedByLastname.hashCode() : 0);
-        result = 31 * result + (fixDescription != null ? fixDescription.hashCode() : 0);
-        result = 31 * result + (bugComments != null ? bugComments.hashCode() : 0);
-        result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
-        result = 31 * result + (bugCategory != null ? bugCategory.hashCode() : 0);
-        result = 31 * result + (bugDesiredResult != null ? bugDesiredResult.hashCode() : 0);
-        result = 31 * result + (bugDiscoveredDate != null ? bugDiscoveredDate.hashCode() : 0);
-        result = 31 * result + (assignedTo != null ? assignedTo.hashCode() : 0);
-        result = 31 * result + (bugPriority != null ? bugPriority.hashCode() : 0);
-        result = 31 * result + (bugRegion != null ? bugRegion.hashCode() : 0);
-        result = 31 * result + (assignedTo2 != null ? assignedTo2.hashCode() : 0);
-        result = 31 * result + (assignedTo3 != null ? assignedTo3.hashCode() : 0);
+        int result = (int) (getBugId() ^ (getBugId() >>> 32));
+        result = 31 * result + (getBugEnteredDate() != null ? getBugEnteredDate().hashCode() : 0);
+        result = 31 * result + (getBugFixedDate() != null ? getBugFixedDate().hashCode() : 0);
+        result = 31 * result + (getBugPractice() != null ? getBugPractice().hashCode() : 0);
+        result = 31 * result + (getBugDivision() != null ? getBugDivision().hashCode() : 0);
+        result = 31 * result + (getBugDateOfService() != null ? getBugDateOfService().hashCode() : 0);
+        result = 31 * result + (getBugActivity() != null ? getBugActivity().hashCode() : 0);
+        result = 31 * result + (getBugTitle() != null ? getBugTitle().hashCode() : 0);
+        result = 31 * result + (getBugDesiredAction() != null ? getBugDesiredAction().hashCode() : 0);
+        result = 31 * result + (getBugResult() != null ? getBugResult().hashCode() : 0);
+        result = 31 * result + (getBugStatus() != null ? getBugStatus().hashCode() : 0);
+        result = 31 * result + (getReportedByFirstname() != null ? getReportedByFirstname().hashCode() : 0);
+        result = 31 * result + (getReportedByLastname() != null ? getReportedByLastname().hashCode() : 0);
+        result = 31 * result + (getFixedByFirstname() != null ? getFixedByFirstname().hashCode() : 0);
+        result = 31 * result + (getFixedByLastname() != null ? getFixedByLastname().hashCode() : 0);
+        result = 31 * result + (getFixDescription() != null ? getFixDescription().hashCode() : 0);
+        result = 31 * result + (getBugComments() != null ? getBugComments().hashCode() : 0);
+        result = 31 * result + (getUserLogin() != null ? getUserLogin().hashCode() : 0);
+        result = 31 * result + (getBugCategory() != null ? getBugCategory().hashCode() : 0);
+        result = 31 * result + (getBugDesiredResult() != null ? getBugDesiredResult().hashCode() : 0);
+        result = 31 * result + (getBugDiscoveredDate() != null ? getBugDiscoveredDate().hashCode() : 0);
+        result = 31 * result + (getAssignedTo() != null ? getAssignedTo().hashCode() : 0);
+        result = 31 * result + (getBugPriority() != null ? getBugPriority().hashCode() : 0);
         return result;
     }
 }

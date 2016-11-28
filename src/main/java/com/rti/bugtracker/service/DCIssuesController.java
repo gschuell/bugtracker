@@ -1,8 +1,9 @@
 package com.rti.bugtracker.service;
 
-import com.rti.bugtracker.domain.AmrIssues;
-import com.rti.bugtracker.domain.AmrIssuesEntity;
-import com.rti.bugtracker.util.AmrIssuesComparatorStore;
+import com.rti.bugtracker.domain.DCIssues;
+import com.rti.bugtracker.domain.IssuesEntity;
+import com.rti.bugtracker.domain.IssuesEntity;
+import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/issues")
-public class AmrIssuesController {
+public class DCIssuesController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -32,55 +33,55 @@ public class AmrIssuesController {
     }
 
 
-    private AmrIssues amrIssues;
+    private Issues Issues;
 
-    private AmrIssuesComparatorStore amrIssuesComparatorStore;
+    private DCIssuesComparatorStore DCIssuesComparatorStore;
 
     @Autowired
-    public AmrIssuesController(AmrIssues amrIssues) {
-        this.amrIssues = amrIssues;
-       // this.amrIssuesComparatorStore = amrIssuesComparatorStore;
+    public DCIssuesController(DCIssues DCIssues) {
+        this.Issues = Issues;
+       // this.DCIssuesComparatorStore = DCIssuesComparatorStore;
         log.info("Entering BugTrackerController constructor armIssues.");
     }
 
-    public AmrIssuesController() {}
+    public DCIssuesController() {}
     
     /**
      * This endpoint accepts a bug ID and returns the bug in JSON format. If no bug exists,
      * null will be returned.
      *
      * @param bugId
-     * @return AmrIssuesEntity
+     * @return IssuesEntity
      */
 
     @RequestMapping(value = "/{bugId}", method = RequestMethod.GET, produces = "application/json")
-    public AmrIssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
+    public IssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
         log.info("Looking for a bug entry with id {}", bugId);
-        return amrIssues.findOne(bugId);
+        return Issues.findOne(bugId);
     }
 
     /**
      * This endpoint returns all of the issues in the BUGSADMIN.AMR_ISSUES table sorted by
      * bugId.
      *
-     * @return List<AmrIssuesEntity>
+     * @return List<IssuesEntity>
      */
 
     @RequestMapping(value = "/allissues", method = RequestMethod.GET, produces = "application/json")
-    public List<AmrIssuesEntity> showAllIssues() {
+    public List<IssuesEntity> showAllIssues() {
         log.info("Starting allIssues");
         long startTime = System.currentTimeMillis();
-        List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findAll());
-        Comparator<AmrIssuesEntity> comparator = getComparator(SortTypes.BUGID);
+        List<IssuesEntity> issues = new ArrayList<>(DCIssues.findAll());
+        Comparator<IssuesEntity> comparator = getComparator(SortTypes.BUGID);
          //       (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
         //log.info("Sorting results on sort type {}", comparators.getComparator(sortType).toString());
-       // Comparator<AmrIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
+       // Comparator<IssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
        // return issues;
 
-        //List<AmrIssuesEntity> issuesList = amrIssues.findAllByOrderByBugIdAsc();
+        //List<IssuesEntity> issuesList = DCIssues.findAllByOrderByBugIdAsc();
 
 
-       List<AmrIssuesEntity> issuesList = issues.parallelStream().sorted(comparator)
+       List<IssuesEntity> issuesList = issues.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
         log.info("Select finished allissues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
         return issuesList;
@@ -89,17 +90,17 @@ public class AmrIssuesController {
     /**
      * This endpoint lsits all bugs for a userLogin. A user will select a user from a dropdown list
      * populated by the /loginuser endpoint referenced below. ThSis endpoint will return a list of
-     * AmrIssuesEntity objects sorted by bugId.
+     * IssuesEntity objects sorted by bugId.
      * @param userLogin
-     * @return List<AmrIssuesEntity>
+     * @return List<IssuesEntity>
      */
 
     @RequestMapping(value = "/byuser/{userLogin}", method = RequestMethod.GET, produces = "application/json")
-    public List<AmrIssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
-        List<AmrIssuesEntity> issues = new ArrayList<>(amrIssues.findByUserLogin(userLogin.toUpperCase()));
+    public List<IssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
+        List<IssuesEntity> issues = new ArrayList<>(Issues.findByUserLogin(userLogin.toUpperCase()));
         if (issues.size() > 1)
-            return issues.parallelStream().sorted((AmrIssuesEntity e1,
-                          AmrIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
+            return issues.parallelStream().sorted((IssuesEntity e1,
+                          IssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
                           .collect(Collectors.toList());
         return issues;
     }
@@ -114,16 +115,16 @@ public class AmrIssuesController {
      */
     @RequestMapping(value = "/loginusers", method = RequestMethod.GET, produces = "application/json")
     public List<String> findUserLogins() {
-        List<String> users = new ArrayList<String>(amrIssues.findUserLogins());
+        List<String> users = new ArrayList<String>(DCIssues.findUserLogins());
         if (users.size() > 1)
             return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
         return users;
     }
 
-    public Comparator<AmrIssuesEntity> getComparator(SortTypes type) {
+    public Comparator<IssuesEntity> getComparator(SortTypes type) {
 
-        Comparator<AmrIssuesEntity> comparator;
+        Comparator<IssuesEntity> comparator;
 
         switch(type) {
             case BUGID :

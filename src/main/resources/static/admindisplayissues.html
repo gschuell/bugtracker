@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- #INCLUDE FILE="include/config.asp" -->
+    <!-- #INCLUDE FILE="include/common.asp" -->
+
+
+    <title><%=PROJECT_LABEL%> Issues Administration</title>
+</head>
+<body text="black" leftmargin=5 topmargin=5>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr>
+        <td valign="top" colspan=1 nowrap><img src="images/RtiLogo2.gif" border="0" alt="" align=center></td>
+    </tr>
+</table>
+<h1>Practice Admin</h1>
+<h2>Admin Display Issues</h2>
+<form name=adminDisplayIssue id=adminDisplayIssue method=post action="AdminDisplayIssues.asp">
+    <input type=hidden name="sortOrder" value="bug_id">
+    <table border=1>
+        <tr><td><b>Status Filter</b></td><td><select name="status_filter">
+            <option selected value="All">Display All</option>
+            <option value="Open">Open</option>
+            <option value="Pending">Pending</option>
+            <option value="AwaitingResponse">AwaitingResponse</option>
+            <option value="Resolved">Resolved</option>
+            <option value="ReWork">ReWork</option>
+            <option value="DC Reviewed">DC Reviewed</option>
+        </select>
+        </td></tr>
+        <tr><td><b>IssueID</b></td><td><input type=text name="issue_filter" value="All"></td></tr>
+        <tr><td><b>Provider Filter</b></td><td><input type=text maxlength=6 size=6 name="provider_filter"></td></tr>
+        <tr><td><b>Parent Document Number Filter</b></td><td><input type=text maxlength=16 size=16 name="pardoc_filter"></td></tr>
+        <tr><td><b>Payor Filter</b></td><td><input type=text maxlength=5 size=5 name="payor_filter"></td></tr>
+        <tr><td><b>Practice Filter</b></td><td><input type=text maxlength=3 size=3 name="practice_filter"></td></tr>
+        <tr><td><b>CheckNum Filter</b></td><td><input type=text maxlength=15 size=15 name="checknum_filter"></td></tr>
+        <tr><td><b>CheckDate Filter</b></td><td><input type=text maxlength=10 size=10 name="checkdate_filter"></td></tr>
+        <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter"><option value=''></option>
+        <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter"><option value=''></option>
+</body>
+</html>

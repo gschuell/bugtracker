@@ -1,15 +1,15 @@
 package com.rti.bugtracker.util;
 
-import com.rti.bugtracker.domain.AmrIssuesEntity;
+import com.rti.bugtracker.domain.SavedDCIssuesEntity;
 
 import java.util.Comparator;
 
 /**
  * Created by gschuell on 11/1/16.
  */
-public class AmrIssuesStatusComparatorImpl implements AmrIssuesComparators {
+public class DCIssuesStatusComparatorImpl implements DCIssuesComparators {
 
-    public final Comparator<AmrIssuesEntity> comparator =
+    public final Comparator<SavedDCIssuesEntity> comparator =
             (e1, e2) -> (e1.getBugStatus().compareToIgnoreCase(e2.getBugStatus()));
 
 
@@ -19,7 +19,7 @@ public class AmrIssuesStatusComparatorImpl implements AmrIssuesComparators {
 
 
     @Override
-    public int compare(AmrIssuesEntity o1, AmrIssuesEntity o2) {
+    public int compare(SavedDCIssuesEntity o1, SavedDCIssuesEntity o2) {
         return 0;
     }
 }

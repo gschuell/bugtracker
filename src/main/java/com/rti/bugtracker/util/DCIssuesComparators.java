@@ -1,17 +1,17 @@
 package com.rti.bugtracker.util;
 
-import com.rti.bugtracker.domain.AmrIssuesEntity;
+import com.rti.bugtracker.domain.SavedDCIssuesEntity;
 
 import java.util.Comparator;
 
 /**
  * Created by gschuell on 11/1/16.
  */
-public interface AmrIssuesComparators extends Comparator<AmrIssuesEntity> {
+public interface DCIssuesComparators extends Comparator<SavedDCIssuesEntity> {
 
 
     @Override
-    int compare(AmrIssuesEntity o1, AmrIssuesEntity o2);
+    int compare(SavedDCIssuesEntity o1, SavedDCIssuesEntity o2);
 
     @Override
     boolean equals(Object obj);
