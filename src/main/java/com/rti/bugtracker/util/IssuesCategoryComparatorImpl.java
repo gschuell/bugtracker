@@ -1,6 +1,6 @@
 package com.rti.bugtracker.util;
 
-import com.rti.bugtracker.domain.SavedDCIssuesEntity;
+import com.rti.bugtracker.domain.DCIssuesEntity;
 
 import java.util.Comparator;
 
@@ -9,7 +9,7 @@ import java.util.Comparator;
  */
 public class DCIssuesCategoryComparatorImpl implements DCIssuesComparators {
 
-    public final Comparator<SavedDCIssuesEntity> comparator =
+    public final Comparator<DCIssuesEntity> comparator =
             (e1, e2) -> (e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
 
     public Comparator getComparators() {
@@ -18,7 +18,7 @@ public class DCIssuesCategoryComparatorImpl implements DCIssuesComparators {
 
 
     @Override
-    public int compare(SavedDCIssuesEntity o1, SavedDCIssuesEntity o2) {
+    public int compare(DCIssuesEntity o1, DCIssuesEntity o2) {
         return 0;
     }
 }

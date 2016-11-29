@@ -1,6 +1,7 @@
 package com.rti.bugtracker.service;
 
 import com.rti.bugtracker.domain.DCIssues;
+import com.rti.bugtracker.domain.Issues;
 import com.rti.bugtracker.domain.IssuesEntity;
 import com.rti.bugtracker.domain.IssuesEntity;
 import com.rti.bugtracker.util.DCIssuesComparatorStore;
@@ -33,13 +34,13 @@ public class DCIssuesController {
     }
 
 
-    private Issues Issues;
+    private Issues issues;
 
     private DCIssuesComparatorStore DCIssuesComparatorStore;
 
     @Autowired
     public DCIssuesController(DCIssues DCIssues) {
-        this.Issues = Issues;
+        this.issues = issues;
        // this.DCIssuesComparatorStore = DCIssuesComparatorStore;
         log.info("Entering BugTrackerController constructor armIssues.");
     }
@@ -57,7 +58,7 @@ public class DCIssuesController {
     @RequestMapping(value = "/{bugId}", method = RequestMethod.GET, produces = "application/json")
     public IssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
         log.info("Looking for a bug entry with id {}", bugId);
-        return Issues.findOne(bugId);
+        return issues.findOne(bugId);
     }
 
     /**
@@ -71,7 +72,7 @@ public class DCIssuesController {
     public List<IssuesEntity> showAllIssues() {
         log.info("Starting allIssues");
         long startTime = System.currentTimeMillis();
-        List<IssuesEntity> issues = new ArrayList<>(DCIssues.findAll());
+        List<IssuesEntity> issuesList = new ArrayList<>(issues.findAll());
         Comparator<IssuesEntity> comparator = getComparator(SortTypes.BUGID);
          //       (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
         //log.info("Sorting results on sort type {}", comparators.getComparator(sortType).toString());
@@ -81,7 +82,7 @@ public class DCIssuesController {
         //List<IssuesEntity> issuesList = DCIssues.findAllByOrderByBugIdAsc();
 
 
-       List<IssuesEntity> issuesList = issues.parallelStream().sorted(comparator)
+       issuesList = issuesList.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
         log.info("Select finished allissues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
         return issuesList;
@@ -97,12 +98,12 @@ public class DCIssuesController {
 
     @RequestMapping(value = "/byuser/{userLogin}", method = RequestMethod.GET, produces = "application/json")
     public List<IssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
-        List<IssuesEntity> issues = new ArrayList<>(Issues.findByUserLogin(userLogin.toUpperCase()));
-        if (issues.size() > 1)
-            return issues.parallelStream().sorted((IssuesEntity e1,
+        List<IssuesEntity> issuesList = new ArrayList<>(issues.findByUserLogin(userLogin.toUpperCase()));
+        if (issuesList.size() > 1)
+            return issuesList.parallelStream().sorted((IssuesEntity e1,
                           IssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
                           .collect(Collectors.toList());
-        return issues;
+        return issuesList;
     }
 
     /**
@@ -115,7 +116,7 @@ public class DCIssuesController {
      */
     @RequestMapping(value = "/loginusers", method = RequestMethod.GET, produces = "application/json")
     public List<String> findUserLogins() {
-        List<String> users = new ArrayList<String>(DCIssues.findUserLogins());
+        List<String> users = new ArrayList<String>(issues.findUserLogins());
         if (users.size() > 1)
             return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
