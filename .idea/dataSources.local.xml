@@ -11,5 +11,15 @@
       <user-name>bugsadmin</user-name>
       <resolve-scope>*:BUGSADMIN,PUBLIC</resolve-scope>
     </data-source>
+    <data-source name="Oracle - @oraimgb.rti.com" uuid="69e75595-e722-4bc1-832e-dfea31cc0da0">
+      <database-info product="Oracle" version="Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production&#10;With the Partitioning, Real Application Clusters, Automatic Storage Management, OLAP,&#10;Data Mining and Real Application Testing options" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
+        <extra-name-characters>$#</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>bugs</user-name>
+      <resolve-scope>*:BUGSADMIN,BUGS,PUBLIC</resolve-scope>
+    </data-source>
   </component>
 </project>

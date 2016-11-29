@@ -8,5 +8,12 @@
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
       <jdbc-url>jdbc:oracle:thin:@//devdb01.rti.com:1521/devdb01</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Oracle - @oraimgb.rti.com" uuid="69e75595-e722-4bc1-832e-dfea31cc0da0">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@//oraimgb.rti.com:1521/rtidb01.rti.com</jdbc-url>
+    </data-source>
   </component>
 </project>
