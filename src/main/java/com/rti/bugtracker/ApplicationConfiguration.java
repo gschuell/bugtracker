@@ -38,14 +38,14 @@ public class ApplicationConfiguration {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Value("${amrissues.username}")
-    private String amrIssuesUsername;
+    @Value("${dcbugs.username}")
+    private String dcbugsUsername;
 
-    @Value("${amrissues.password}")
-    private String amrissuesPassword;
+    @Value("${dcbugs.password}")
+    private String dcbugsPassword;
 
-    @Value("${amrissues.url}")
-    private String amrIssuesUrl;
+    @Value("${dcbugs.url}")
+    private String dcbugsUrl;
 
     @Value("${tower.username}")
     private String towerUsername;
@@ -65,11 +65,11 @@ public class ApplicationConfiguration {
        // vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setGenerateDdl(false);
 
-        log.info("Now we have DataSource ==> " + amrIssuesDataSource());
+        log.info("Now we have DataSource ==> " + dcbugsDataSource());
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.rti.bugtracker");
-        factory.setDataSource(amrIssuesDataSource());
+        factory.setDataSource(dcbugsDataSource());
         factory.afterPropertiesSet();
 
         return factory.getObject();
@@ -85,25 +85,25 @@ public class ApplicationConfiguration {
 
     /*
     @Bean
-    @ConfigurationProperties("amrissues")
-            public DataSource amrIssuesDataSource() {
+    @ConfigurationProperties("dcbugs")
+            public DataSource dcbugsDataSource() {
                 return DataSourceBuilder.create().build();
             }
 */
     @Bean
     @Primary
-    @ConfigurationProperties("amrissues")
-    DataSource amrIssuesDataSource() throws SQLException {
+    @ConfigurationProperties("dcbugs")
+    DataSource dcbugsDataSource() throws SQLException {
 
         OracleDataSource dataSource = new OracleDataSource();
-        dataSource.setUser(amrIssuesUsername);
-        dataSource.setPassword(amrissuesPassword);
-        dataSource.setURL(amrIssuesUrl);
+        dataSource.setUser(dcbugsUsername);
+        dataSource.setPassword(dcbugsPassword);
+        dataSource.setURL(dcbugsUrl);
         dataSource.setImplicitCachingEnabled(true);
         dataSource.setFastConnectionFailoverEnabled(true);
         log.info("Created dataSource [{}]", dataSource);
-        log.info("URL used is [{}], username is [{}] and password is [{}]", amrIssuesUrl,
-                amrIssuesUsername, amrissuesPassword);
+        log.info("URL used is [{}], username is [{}] and password is [{}]", dcbugsUrl,
+                dcbugsUsername, dcbugsPassword);
         return dataSource;
     }
 

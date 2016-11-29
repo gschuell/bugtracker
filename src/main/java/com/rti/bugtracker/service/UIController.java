@@ -1,6 +1,6 @@
 package com.rti.bugtracker.service;
 
-import com.rti.bugtracker.domain.SavedDCIssuesEntity;
+import com.rti.bugtracker.domain.DCIssuesEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class UIController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private DCIssuesController amrIssues;
+    private IssuesController issuesController;
 
     @Autowired
-    public UIController(DCIssuesController amrIssues) {
-        this.amrIssues = amrIssues;
+    public UIController(IssuesController issuesController) {
+        this.issuesController = issuesController;
     }
 
     public UIController() {}
@@ -33,9 +33,9 @@ public class UIController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public  String index(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
-        List<SavedDCIssuesEntity> issues = new ArrayList<>();
-        model.addAttribute("issues", amrIssues.showAllIssues());
+        List<DCIssuesEntity> issues = new ArrayList<>();
+        model.addAttribute("issues", issuesController.showAllIssues());
 
-        return "index.html";
+        return "admindisplayissues.html";
     }
 }

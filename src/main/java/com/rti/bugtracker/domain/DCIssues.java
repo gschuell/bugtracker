@@ -8,15 +8,15 @@ import java.util.List;
 /**
  * Created by gschuell on 10/17/16.
  */
-public interface DCIssues extends JpaRepository<SavedDCIssuesEntity, Long> {
+public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
 
-    List<SavedDCIssuesEntity> findAll();
+    List<DCIssuesEntity> findAll();
 
-    List<SavedDCIssuesEntity> findAllByOrderByBugIdAsc();
+    List<DCIssuesEntity> findAllByOrderByBugIdAsc();
 
-    List<SavedDCIssuesEntity> findByUserLogin(String userLogin);
+    List<DCIssuesEntity> findByAssignedTo(String userLogin);
 
-    @Query("select Distinct bugsadmin.user_login from #{#entityName} amr")
-    List<String> findUserLogins();
+    //@Query("select Distinct bugsadmin.assigned_to from #{#entityName}")
+    List<DCIssuesEntity> findDistinctDCIssuesByAssignedTo();
 
 }

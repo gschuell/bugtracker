@@ -9,17 +9,17 @@ import java.util.Map;
 
  public class DCIssuesComparatorStore {
 
-    private Map<String, DCIssuesComparators> amrComparatorMap =
-            new HashMap<String, DCIssuesComparators>();
+    private Map<String, IssuesComparators> amrComparatorMap =
+            new HashMap<String, IssuesComparators>();
 
     public DCIssuesComparatorStore() {
 
-        amrComparatorMap.put("bugId", (DCIssuesComparators) new DCIssuesBugidComparatorImpl());
-        amrComparatorMap.put("category", (DCIssuesComparators)new DCIssuesCategoryComparatorImpl());
-        amrComparatorMap.put("status", (DCIssuesComparators) new DCIssuesStatusComparatorImpl());
+        amrComparatorMap.put("bugId", (IssuesComparators) new IssuesBugidComparatorImpl());
+        amrComparatorMap.put("category", (IssuesComparators)new IssuesCategoryComparatorImpl());
+        amrComparatorMap.put("status", (IssuesComparators) new DCIssuesStatusComparatorImpl());
     }
 
-    public DCIssuesComparators getComparator(String key) {
+    public IssuesComparators getComparator(String key) {
         return amrComparatorMap.get(key);
     }
 }

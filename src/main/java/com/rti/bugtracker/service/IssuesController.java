@@ -1,9 +1,7 @@
 package com.rti.bugtracker.service;
 
 import com.rti.bugtracker.domain.DCIssues;
-import com.rti.bugtracker.domain.Issues;
-import com.rti.bugtracker.domain.IssuesEntity;
-import com.rti.bugtracker.domain.IssuesEntity;
+import com.rti.bugtracker.domain.DCIssuesEntity;
 import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +21,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/issues")
-public class DCIssuesController {
+public class IssuesController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -34,98 +32,98 @@ public class DCIssuesController {
     }
 
 
-    private Issues issues;
+    private DCIssues dcIssues;
 
-    private DCIssuesComparatorStore DCIssuesComparatorStore;
+    private DCIssuesComparatorStore DCdcIssuesComparatorStore;
 
     @Autowired
-    public DCIssuesController(DCIssues DCIssues) {
-        this.issues = issues;
-       // this.DCIssuesComparatorStore = DCIssuesComparatorStore;
-        log.info("Entering BugTrackerController constructor armIssues.");
+    public IssuesController(DCIssues dcIssues) {
+        this.dcIssues = dcIssues;
+       // this.DCdcIssuesComparatorStore = DCdcIssuesComparatorStore;
+        log.info("Entering BugTrackerController constructor armdcIssues.");
     }
 
-    public DCIssuesController() {}
+    public IssuesController() {}
     
     /**
      * This endpoint accepts a bug ID and returns the bug in JSON format. If no bug exists,
      * null will be returned.
      *
      * @param bugId
-     * @return IssuesEntity
+     * @return DCIssuesEntity
      */
 
     @RequestMapping(value = "/{bugId}", method = RequestMethod.GET, produces = "application/json")
-    public IssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
+    public DCIssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
         log.info("Looking for a bug entry with id {}", bugId);
-        return issues.findOne(bugId);
+        return dcIssues.findOne(bugId);
     }
 
     /**
-     * This endpoint returns all of the issues in the BUGSADMIN.AMR_ISSUES table sorted by
+     * This endpoint returns all of the dcIssues in the BUGSADMIN.AMR_dcIssues table sorted by
      * bugId.
      *
-     * @return List<IssuesEntity>
+     * @return List<DCIssuesEntity>
      */
 
-    @RequestMapping(value = "/allissues", method = RequestMethod.GET, produces = "application/json")
-    public List<IssuesEntity> showAllIssues() {
-        log.info("Starting allIssues");
+    @RequestMapping(value = "/alldcIssues", method = RequestMethod.GET, produces = "application/json")
+    public List<DCIssuesEntity> showAlldcIssues() {
+        log.info("Starting alldcIssues");
         long startTime = System.currentTimeMillis();
-        List<IssuesEntity> issuesList = new ArrayList<>(issues.findAll());
-        Comparator<IssuesEntity> comparator = getComparator(SortTypes.BUGID);
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findAll());
+        Comparator<DCIssuesEntity> comparator = getComparator(SortTypes.BUGID);
          //       (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
         //log.info("Sorting results on sort type {}", comparators.getComparator(sortType).toString());
-       // Comparator<IssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
-       // return issues;
+       // Comparator<dcIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
+       // return dcIssues;
 
-        //List<IssuesEntity> issuesList = DCIssues.findAllByOrderByBugIdAsc();
+        //List<dcIssuesEntity> dcIssuesList = DCdcIssues.findAllByOrderByBugIdAsc();
 
 
-       issuesList = issuesList.parallelStream().sorted(comparator)
+       dcIssuesList = dcIssuesList.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
-        log.info("Select finished allissues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
-        return issuesList;
+        log.info("Select finished alldcIssues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
+        return dcIssuesList;
     }
 
     /**
      * This endpoint lsits all bugs for a userLogin. A user will select a user from a dropdown list
      * populated by the /loginuser endpoint referenced below. ThSis endpoint will return a list of
-     * IssuesEntity objects sorted by bugId.
+     * dcIssuesEntity objects sorted by bugId.
      * @param userLogin
-     * @return List<IssuesEntity>
+     * @return List<dcIssuesEntity>
      */
 
     @RequestMapping(value = "/byuser/{userLogin}", method = RequestMethod.GET, produces = "application/json")
-    public List<IssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
-        List<IssuesEntity> issuesList = new ArrayList<>(issues.findByUserLogin(userLogin.toUpperCase()));
-        if (issuesList.size() > 1)
-            return issuesList.parallelStream().sorted((IssuesEntity e1,
-                          IssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
+    public List<dcIssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
+        List<dcIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByUserLogin(userLogin.toUpperCase()));
+        if (dcIssuesList.size() > 1)
+            return dcIssuesList.parallelStream().sorted((dcIssuesEntity e1,
+                          dcIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
                           .collect(Collectors.toList());
-        return issuesList;
+        return dcIssuesList;
     }
 
     /**
-     * This endpoint returns a list of users contained in the userLogin column of the AMR_ISSUES
+     * This endpoint returns a list of users contained in the userLogin column of the AMR_dcIssues
      * table in the BUGSADMIN database. The underlying SQL uses the distinct keyword to only return
      * unique users. A call to this endpoint will be to populate a drop down list to use to view
-     * issues by a given user.
+     * dcIssues by a given user.
      *
      * @return List of unique users List<String>
      */
     @RequestMapping(value = "/loginusers", method = RequestMethod.GET, produces = "application/json")
     public List<String> findUserLogins() {
-        List<String> users = new ArrayList<String>(issues.findUserLogins());
+        List<String> users = new ArrayList<String>(dcIssues.findDistinctByUserLogin());
         if (users.size() > 1)
             return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
         return users;
     }
 
-    public Comparator<IssuesEntity> getComparator(SortTypes type) {
+    public Comparator<dcIssuesEntity> getComparator(SortTypes type) {
 
-        Comparator<IssuesEntity> comparator;
+        Comparator<dcIssuesEntity> comparator;
 
         switch(type) {
             case BUGID :
