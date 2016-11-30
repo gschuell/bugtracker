@@ -34,13 +34,13 @@ public class DCIssuesController {
 
     private DCIssues dcIssues;
 
-    private DCIssuesComparatorStore DCdcIssuesComparatorStore;
+    private DCIssuesComparatorStore dcIssuesComparatorStore;
 
     @Autowired
     public DCIssuesController(DCIssues dcIssues) {
         this.dcIssues = dcIssues;
-       // this.DCdcIssuesComparatorStore = DCdcIssuesComparatorStore;
-        log.info("Entering BugTrackerController constructor armdcIssues.");
+       // this.dcIssuesComparatorStore = dcIssuesComparatorStore;
+        log.info("Entering DCIssuesController constructor dcIssues.");
     }
 
     public DCIssuesController() {}
@@ -66,9 +66,9 @@ public class DCIssuesController {
      * @return List<DCIssuesEntity>
      */
 
-    @RequestMapping(value = "/alldcIssues", method = RequestMethod.GET, produces = "application/json")
-    public List<DCIssuesEntity> showAlldcIssues() {
-        log.info("Starting alldcIssues");
+    @RequestMapping(value = "/allIssues", method = RequestMethod.GET, produces = "application/json")
+    public List<DCIssuesEntity> showAllIssues() {
+        log.info("Starting allIssues");
         long startTime = System.currentTimeMillis();
         List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findAll());
         Comparator<DCIssuesEntity> comparator = getComparator(SortTypes.BUGID);
@@ -77,12 +77,12 @@ public class DCIssuesController {
        // Comparator<dcIssuesEntity> idComparator = (e1, e2) -> ((int) e1.getBugId() - (int) e2.getBugId());
        // return dcIssues;
 
-        //List<dcIssuesEntity> dcIssuesList = DCdcIssues.findAllByOrderByBugIdAsc();
+        //List<dcIssuesEntity> dcIssuesList = DCIssues.findAllByOrderByBugIdAsc();
 
 
        dcIssuesList = dcIssuesList.parallelStream().sorted(comparator)
                    .collect(Collectors.toList());
-        log.info("Select finished alldcIssues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
+        log.info("Select finished allIssues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
         return dcIssuesList;
     }
 
@@ -90,13 +90,13 @@ public class DCIssuesController {
      * This endpoint lsits all bugs for a userLogin. A user will select a user from a dropdown list
      * populated by the /loginuser endpoint referenced below. ThSis endpoint will return a list of
      * dcIssuesEntity objects sorted by bugId.
-     * @param userLogin
+     * @param assignedTo
      * @return List<dcIssuesEntity>
      */
 
-    @RequestMapping(value = "/byuser/{userLogin}", method = RequestMethod.GET, produces = "application/json")
-    public List<DCIssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
-        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(userLogin.toUpperCase()));
+    @RequestMapping(value = "/byuser/{assignedTo}", method = RequestMethod.GET, produces = "application/json")
+    public List<DCIssuesEntity> findByAssignedTo(@PathVariable("assignedTo") String assignedTo) {
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(assignedTo.toUpperCase()));
         if (dcIssuesList.size() > 1)
             return dcIssuesList.parallelStream().sorted((DCIssuesEntity e1,
                           DCIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
@@ -112,8 +112,8 @@ public class DCIssuesController {
      *
      * @return List of unique users List<String>
      */
-    @RequestMapping(value = "/loginusers", method = RequestMethod.GET, produces = "application/json")
-    public List<String> findUserLogins() {
+    @RequestMapping(value = "/assignedusers", method = RequestMethod.GET, produces = "application/json")
+    public List<String> findAssignedUsers() {
         List<String> users = new ArrayList<String>(dcIssues.findAssignedUsers());
         if (users.size() > 1)
             return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))

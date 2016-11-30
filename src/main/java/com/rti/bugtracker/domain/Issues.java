@@ -10,14 +10,12 @@ import java.util.List;
  */
 public interface Issues extends JpaRepository<IssuesEntity, Long> {
 
-    IssuesEntity findOne(int bugId);
-
     List<IssuesEntity> findAllByOrderByBugIdAsc();
 
     List<IssuesEntity> findByUserLogin(String userLogin);
 
-   // @Query("select Distinct user_login from #{#entityName}")
-    List<IssuesEntity> findDistinctByUserLogin();
+    @Query("select Distinct u.userLogin from #{#entityName} u")
+    List<IssuesEntity> findUserLogins();
 
     //@Query("select * from #{#entityName} amr order by :sequence")
     //List<SavedDCIssuesEntity>findByBugIdOrderByBugIdAsc();

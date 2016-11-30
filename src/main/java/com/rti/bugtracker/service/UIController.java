@@ -34,7 +34,7 @@ public class UIController {
     public  String index(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
         List<DCIssuesEntity> issues = new ArrayList<>();
-        model.addAttribute("issues", issuesController.showAlldcIssues());
+        model.addAttribute("issues", issuesController.showAllIssues());
 
         return "admindisplayissues.html";
     }
