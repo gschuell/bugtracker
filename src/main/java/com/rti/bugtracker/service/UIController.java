@@ -21,10 +21,10 @@ public class UIController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private IssuesController issuesController;
+    private DCIssuesController issuesController;
 
     @Autowired
-    public UIController(IssuesController issuesController) {
+    public UIController(DCIssuesController issuesController) {
         this.issuesController = issuesController;
     }
 
@@ -34,7 +34,7 @@ public class UIController {
     public  String index(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
         List<DCIssuesEntity> issues = new ArrayList<>();
-        model.addAttribute("issues", issuesController.showAllIssues());
+        model.addAttribute("issues", issuesController.showAlldcIssues());
 
         return "admindisplayissues.html";
     }

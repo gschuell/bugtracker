@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/issues")
-public class IssuesController {
+public class DCIssuesController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -37,13 +37,13 @@ public class IssuesController {
     private DCIssuesComparatorStore DCdcIssuesComparatorStore;
 
     @Autowired
-    public IssuesController(DCIssues dcIssues) {
+    public DCIssuesController(DCIssues dcIssues) {
         this.dcIssues = dcIssues;
        // this.DCdcIssuesComparatorStore = DCdcIssuesComparatorStore;
         log.info("Entering BugTrackerController constructor armdcIssues.");
     }
 
-    public IssuesController() {}
+    public DCIssuesController() {}
     
     /**
      * This endpoint accepts a bug ID and returns the bug in JSON format. If no bug exists,
@@ -95,11 +95,11 @@ public class IssuesController {
      */
 
     @RequestMapping(value = "/byuser/{userLogin}", method = RequestMethod.GET, produces = "application/json")
-    public List<dcIssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
-        List<dcIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByUserLogin(userLogin.toUpperCase()));
+    public List<DCIssuesEntity> findByUserLogin(@PathVariable("userLogin") String userLogin) {
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(userLogin.toUpperCase()));
         if (dcIssuesList.size() > 1)
-            return dcIssuesList.parallelStream().sorted((dcIssuesEntity e1,
-                          dcIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
+            return dcIssuesList.parallelStream().sorted((DCIssuesEntity e1,
+                          DCIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
                           .collect(Collectors.toList());
         return dcIssuesList;
     }
@@ -114,16 +114,16 @@ public class IssuesController {
      */
     @RequestMapping(value = "/loginusers", method = RequestMethod.GET, produces = "application/json")
     public List<String> findUserLogins() {
-        List<String> users = new ArrayList<String>(dcIssues.findDistinctByUserLogin());
+        List<String> users = new ArrayList<String>(dcIssues.findAssignedUsers());
         if (users.size() > 1)
             return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
         return users;
     }
 
-    public Comparator<dcIssuesEntity> getComparator(SortTypes type) {
+    public Comparator<DCIssuesEntity> getComparator(SortTypes type) {
 
-        Comparator<dcIssuesEntity> comparator;
+        Comparator<DCIssuesEntity> comparator;
 
         switch(type) {
             case BUGID :
@@ -131,7 +131,7 @@ public class IssuesController {
                     (e1, e2) -> ( (int)e1.getBugId() - ((int)e2.getBugId()));
             case CATEGORY :
                 return  comparator =
-                        (e1, e2) -> ( e1.getBugCategory().compareToIgnoreCase(e2.getBugCategory()));
+                        (e1, e2) -> ( e1.getProblemType().compareToIgnoreCase(e2.getProblemType()));
             case STATUS :
                 return  comparator =
                         (e1, e2) -> (e1.getBugStatus().compareToIgnoreCase(e2.getBugStatus()));

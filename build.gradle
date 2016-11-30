@@ -48,7 +48,7 @@ uploadArchives {
 }
 
 final def var = dependencies {
-    //compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('com.hynnet:oracle-driver-ojdbc6:12.1.0.1')
     compile("org.springframework.boot:spring-boot-starter-parent:${springBootVersion}")
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
