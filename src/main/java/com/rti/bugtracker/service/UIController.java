@@ -30,6 +30,12 @@ public class UIController {
 
     public UIController() {}
 
+    /**
+     * Need a POST method to take the Admin Display Issues form and build a search string which will be used
+     * to get all the requested issues and pass them to the page for display.
+     */
+
+
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public  String index(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();

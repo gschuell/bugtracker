@@ -1,46 +1,40 @@
+<!DOCTYPE html>
 <HTML>
 <HEAD>
-    <!-- #INCLUDE FILE="include/config.asp" -->
-    <%  Session("MainMenu") = "bugadmin.asp" %>
+    <!-- #INCLUDE FILE="include/config.html" -->
+    <!--<%  Session("MainMenu") = "bugadmin.html" %> -->
+    <META NAME="GENERATOR">
     <TITLE><%=PROJECT_LABEL%> Issue Admin Main Menu</TITLE>
-    <link href="css/angular-bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-        [ng\:cloak], [ng-cloak], .ng-cloak {
-            display: none !important;
-        }
-    </style>
 </HEAD>
-<body ng-app="bugtracker" text="black" leftmargin=5 topmargin=5>
+<body text="black" leftmargin=5 topmargin=5>
 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
     <tr>
-        <td width="121"><img src="/images/amr_01a.gif" width="121" height="89" border="0" alt=""></td>
-        <td width="100%"><img src="/images/amr_02.gif" width="100%" height="89" border="0" alt=""></td>
-        <td width="467"><img src="/images/amr_03.gif" width="467" height="89" border="0" alt=""></td>
+        <td valign="top" colspan=1 nowrap><img src="images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align=center></td>
     </tr>
 </table>
 <hr>
 
-<div ng-controller="home as home" ng-cloak class="ng-cloak">
-    home.
-    <p>The ID is {{home.greeting.id}}</p>
-    <p>The content is {{home.greeting.content}}</p>
+<div ng-controller="home as home" ng-cloak class="ng-cloak"/>
+
+<div style="text-align:center; width:100%">
+
+    <h1>Data Center Issue Tracking </h1>
+    <a href="AddIssue.html">Add Issues</a><br><br>
+    <a href="AdminDisplayIssues.html">Display Issues For Edit</a><br><br>
+    <a href="AdminDisplayIssues2.html">Display Issues (the Keith way) For Edit</a><br><br>
+    <a href="BugSummary.html">Issue Count Summary</a><br><br>
+    <a href="BugSummary2.html">Issue Count Summary By Status and Problem Type</a><br><br>
+    <a href="BugSummary3.html">Issue Count Summary By Status Only</a><br><br>
+    <a href="BugSummary4.html">Issue Count Summary By Problem Type Only</a><br><br>
+    <a href="AddCategory.html">Add A New Resolution Type</a><br><br>
+    <a href="ShowProblemTypes.html">Show Resolution Types</a><br><br>
+    <a href="AddUser.html">Add A New User</a><br><br>
+    <a href="ShowUsers.html">Show Users</a><br><br>
+
 </div>
-<center>
-    <h1><%=PROJECT_LABEL%> Issue Tracking </h1>
-    <a href="AddIssue.asp">Add Issues</a><br><br>
-    <a href="AdminDisplayIssues.asp">Display Issues For Edit</a><br><br>
-    <a href="AdminDisplayIssues2.asp">Display Issues (the Keith way) For Edit</a><br><br>
-    <a href="BugSummary.asp">Issue Count Summary</a><br><br>
-    <a href="BugSummary2.asp">Issue Count Summary By Status and Problem Type</a><br><br>
-    <a href="BugSummary3.asp">Issue Count Summary By Status Only</a><br><br>
-    <a href="BugSummary4.asp">Issue Count Summary By Problem Type Only</a><br><br>
-    <a href="AddCategory.asp">Add A New Resolution Type</a><br><br>
-    <a href="ShowProblemTypes.asp">Show Resolution Types</a><br><br>
-    <a href="AddUser.asp">Add A New User</a><br><br>
-    <a href="ShowUsers.asp">Show Users</a><br><br>
 
     <P>&nbsp;</P>
 

@@ -5,7 +5,7 @@
     <!-- #INCLUDE FILE="include/common.asp" -->
 
 
-    <title><%=PROJECT_LABEL%> Issues Administration</title>
+    <title>Data Center Issues Administration</title>
 </head>
 <body text="black" leftmargin=5 topmargin=5>
 
@@ -15,15 +15,20 @@
     <tr>
         <td valign="top" colspan=1 nowrap><img src="images/RtiLogo2.gif" border="0" alt="" align=center></td>
     </tr>
+
 </table>
+<hr>
+<div style="text-align:center; width:100%">
 <h1>Practice Admin</h1>
 <h2>Admin Display Issues</h2>
+
+</div>
 <form name=adminDisplayIssue id=adminDisplayIssue method=post action="AdminDisplayIssues.asp">
     <input type=hidden name="sortOrder" value="bug_id">
-    <table border=1>
+    <table border=1 align="center">
         <tr><td><b>Status Filter</b></td><td><select name="status_filter">
-            <option selected value="All">Display All</option>
-            <option value="Open">Open</option>
+            <option value="All">Display All</option>
+            <option selected value="Open">Open</option>
             <option value="Pending">Pending</option>
             <option value="AwaitingResponse">AwaitingResponse</option>
             <option value="Resolved">Resolved</option>
@@ -40,5 +45,19 @@
         <tr><td><b>CheckDate Filter</b></td><td><input type=text maxlength=10 size=10 name="checkdate_filter"></td></tr>
         <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter"><option value=''></option>
         <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter"><option value=''></option>
+    </select></td></tr>
+        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="start_date_filter"></td></tr>
+        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="end_date_filter"></td></tr>
+
+    </table>
+</form>
+</div>
+<br>
+<br>
+<div style="text-align:center; width:100%">
+<input type=submit value="DisplayIssues" id=btnAction name=btnAction>
+<input type=submit value="MainMenu" id=btnAction name=btnAction>
+<input type=hidden name=LastSort value="<%=LastSort%>">
+</div>
 </body>
 </html>

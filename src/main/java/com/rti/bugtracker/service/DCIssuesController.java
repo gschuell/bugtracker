@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -96,9 +97,10 @@ public class DCIssuesController {
 
     @RequestMapping(value = "/byuser/{assignedTo}", method = RequestMethod.GET, produces = "application/json")
     public List<DCIssuesEntity> findByAssignedTo(@PathVariable("assignedTo") String assignedTo) {
-        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(assignedTo.toUpperCase()));
+        //log.info("Looking for Issues assigned to {}", assignedTo);
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(assignedTo));
         if (dcIssuesList.size() > 1)
-            return dcIssuesList.parallelStream().sorted((DCIssuesEntity e1,
+            return dcIssuesList.parallelStream().filter(Objects::nonNull).sorted((DCIssuesEntity e1,
                           DCIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
                           .collect(Collectors.toList());
         return dcIssuesList;
@@ -114,9 +116,11 @@ public class DCIssuesController {
      */
     @RequestMapping(value = "/assignedusers", method = RequestMethod.GET, produces = "application/json")
     public List<String> findAssignedUsers() {
+
         List<String> users = new ArrayList<String>(dcIssues.findAssignedUsers());
+        //log.info("There are {} rows returned", users.size());
         if (users.size() > 1)
-            return users.parallelStream().sorted((String e1,String e2) ->(e1.compareToIgnoreCase(e2)))
+            return users.parallelStream().filter(Objects::nonNull).sorted((String e1, String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
         return users;
     }

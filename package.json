@@ -1,0 +1,23 @@
+{
+  "name": "bugtracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gschuell/bugtracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gschuell/bugtracker/issues"
+  },
+  "homepage": "https://github.com/gschuell/bugtracker#readme",
+  "dependencies": {
+    "angular2": "^2.0.0-beta.17"
+  }
+}

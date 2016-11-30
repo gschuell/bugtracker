@@ -9,69 +9,75 @@ import java.sql.Time;
 @Entity
 @Table(name = "DC_ISSUES", schema = "BUGSADMIN", catalog = "")
 public class DCIssuesEntity {
-    @Id
-    private long bugId;
-    private Time bugEnteredDate;
-    private Time bugFixedDate;
-    private String bugTitle;
-    private String bugStatus;
-    private String bugComments;
-    private String problemType;
-    private String reportedBy;
-    private String assignedTo;
-    private String bugPriority;
-    private String providerId;
-    private String practice;
-    private String extpayor;
-    private String pardocno;
-    private Time depdt;
-    private String checknum;
-    private String checkamt;
-    private Time checkDate;
-    private Time lastUpdated;
 
-    @Basic
+    @Id
     @Column(name = "BUG_ID", nullable = false, precision = 0)
+    private long bugId;
     public long getBugId() {
         return bugId;
     }
+    @Column(name = "BUG_ENTERED_DATE", nullable = false)
+    private Time bugEnteredDate;
+    public Time getBugEnteredDate() {
+        return bugEnteredDate;
+    }
+    @Column(name = "BUG_FIXED_DATE", nullable = false)
+    private Time bugFixedDate;
+    public Time getBugFixedDate() {
+        return bugFixedDate;
+    }
+    @Column(name = "BUG_TITLE", nullable = false, length = 40)
+    private String bugTitle;
+    public String getBugTitle() {
+        return bugTitle;
+    }
+    @Column(name = "BUG_STATUS", nullable = false, length = 20)
+    private String bugStatus;
+    @Column(name = "BUG_COMMENTS", nullable = false, length = 2000)
+    private String bugComments;
+    @Column(name = "PROBLEM_TYPE", nullable = false, length = 40)
+    private String problemType;
+    @Column(name = "REPORTED_BY", nullable = false, length = 20)
+    private String reportedBy;
+    @Column(name = "ASSIGNED_TO", nullable = false, length = 40)
+    private String assignedTo;
+    @Column(name = "BUG_PRIORITY", nullable = false, length = 20)
+    private String bugPriority;
+    @Column(name = "PROVIDER_ID", nullable = false, length = 12)
+    private String providerId;
+    @Column(name = "PRACTICE", nullable = false, length = 3)
+    private String practice;
+    @Column(name = "EXTPAYOR", nullable = false, length = 12)
+    private String extpayor;
+    @Column(name = "PARDOCNO", nullable = false, length = 16)
+    private String pardocno;
+    @Column(name = "DEPDT", nullable = false)
+    private Time depdt;
+    @Column(name = "CHECKNUM", nullable = false, length = 15)
+    private String checknum;
+    @Column(name = "CHECKAMT", nullable = false, length = 12)
+    private String checkamt;
+    @Column(name = "CHECK_DATE", nullable = false)
+    private Time checkDate;
+    @Column(name = "LAST_UPDATED", nullable = false)
+    private Time lastUpdated;
 
     public void setBugId(long bugId) {
         this.bugId = bugId;
-    }
-
-    @Basic
-    @Column(name = "BUG_ENTERED_DATE", nullable = false)
-    public Time getBugEnteredDate() {
-        return bugEnteredDate;
     }
 
     public void setBugEnteredDate(Time bugEnteredDate) {
         this.bugEnteredDate = bugEnteredDate;
     }
 
-    @Basic
-    @Column(name = "BUG_FIXED_DATE", nullable = false)
-    public Time getBugFixedDate() {
-        return bugFixedDate;
-    }
-
     public void setBugFixedDate(Time bugFixedDate) {
         this.bugFixedDate = bugFixedDate;
-    }
-
-    @Basic
-    @Column(name = "BUG_TITLE", nullable = false, length = 40)
-    public String getBugTitle() {
-        return bugTitle;
     }
 
     public void setBugTitle(String bugTitle) {
         this.bugTitle = bugTitle;
     }
 
-    @Basic
-    @Column(name = "BUG_STATUS", nullable = false, length = 20)
     public String getBugStatus() {
         return bugStatus;
     }
@@ -80,8 +86,6 @@ public class DCIssuesEntity {
         this.bugStatus = bugStatus;
     }
 
-    @Basic
-    @Column(name = "BUG_COMMENTS", nullable = false, length = 2000)
     public String getBugComments() {
         return bugComments;
     }
@@ -90,8 +94,6 @@ public class DCIssuesEntity {
         this.bugComments = bugComments;
     }
 
-    @Basic
-    @Column(name = "PROBLEM_TYPE", nullable = false, length = 40)
     public String getProblemType() {
         return problemType;
     }
@@ -100,8 +102,6 @@ public class DCIssuesEntity {
         this.problemType = problemType;
     }
 
-    @Basic
-    @Column(name = "REPORTED_BY", nullable = false, length = 20)
     public String getReportedBy() {
         return reportedBy;
     }
@@ -110,8 +110,6 @@ public class DCIssuesEntity {
         this.reportedBy = reportedBy;
     }
 
-    @Basic
-    @Column(name = "ASSIGNED_TO", nullable = false, length = 40)
     public String getAssignedTo() {
         return assignedTo;
     }
@@ -120,8 +118,6 @@ public class DCIssuesEntity {
         this.assignedTo = assignedTo;
     }
 
-    @Basic
-    @Column(name = "BUG_PRIORITY", nullable = false, length = 20)
     public String getBugPriority() {
         return bugPriority;
     }
@@ -130,8 +126,6 @@ public class DCIssuesEntity {
         this.bugPriority = bugPriority;
     }
 
-    @Basic
-    @Column(name = "PROVIDER_ID", nullable = false, length = 12)
     public String getProviderId() {
         return providerId;
     }
@@ -140,8 +134,6 @@ public class DCIssuesEntity {
         this.providerId = providerId;
     }
 
-    @Basic
-    @Column(name = "PRACTICE", nullable = false, length = 3)
     public String getPractice() {
         return practice;
     }
@@ -150,8 +142,6 @@ public class DCIssuesEntity {
         this.practice = practice;
     }
 
-    @Basic
-    @Column(name = "EXTPAYOR", nullable = false, length = 12)
     public String getExtpayor() {
         return extpayor;
     }
@@ -160,8 +150,6 @@ public class DCIssuesEntity {
         this.extpayor = extpayor;
     }
 
-    @Basic
-    @Column(name = "PARDOCNO", nullable = false, length = 16)
     public String getPardocno() {
         return pardocno;
     }
@@ -170,8 +158,6 @@ public class DCIssuesEntity {
         this.pardocno = pardocno;
     }
 
-    @Basic
-    @Column(name = "DEPDT", nullable = false)
     public Time getDepdt() {
         return depdt;
     }
@@ -180,8 +166,6 @@ public class DCIssuesEntity {
         this.depdt = depdt;
     }
 
-    @Basic
-    @Column(name = "CHECKNUM", nullable = false, length = 15)
     public String getChecknum() {
         return checknum;
     }
@@ -190,8 +174,6 @@ public class DCIssuesEntity {
         this.checknum = checknum;
     }
 
-    @Basic
-    @Column(name = "CHECKAMT", nullable = false, length = 12)
     public String getCheckamt() {
         return checkamt;
     }
@@ -200,8 +182,6 @@ public class DCIssuesEntity {
         this.checkamt = checkamt;
     }
 
-    @Basic
-    @Column(name = "CHECK_DATE", nullable = false)
     public Time getCheckDate() {
         return checkDate;
     }
@@ -210,8 +190,6 @@ public class DCIssuesEntity {
         this.checkDate = checkDate;
     }
 
-    @Basic
-    @Column(name = "LAST_UPDATED", nullable = false)
     public Time getLastUpdated() {
         return lastUpdated;
     }

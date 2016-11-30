@@ -17,7 +17,7 @@ public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
     List<DCIssuesEntity> findByAssignedTo(String assignedTo);
 
     //@Query("select Distinct u.assignedto from #{#entityName} u")
-    @Query("select Distinct u.assignedTo from #{#entityName} u")
+    @Query("select Distinct u.assignedTo from #{#entityName} u order by u.assignedTo")
     List<String> findAssignedUsers();
 
 }
