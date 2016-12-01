@@ -9,12 +9,8 @@ import javax.persistence.*;
 @Table(name = "DC_CATEGORIES", schema = "BUGSADMIN", catalog = "")
 public class DCCategoriesEntity {
     @Id
-    private Long dcCategoryId;
-    private Long projectId;
-    private String dcCategoryName;
-
-    @Basic
     @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 0)
+    private Long dcCategoryId;
     public Long getdcCategoryId() {
         return dcCategoryId;
     }
@@ -23,8 +19,8 @@ public class DCCategoriesEntity {
         this.dcCategoryId = dcCategoryId;
     }
 
-    @Basic
     @Column(name = "PROJECT_ID", nullable = false, precision = 0)
+    private Long projectId;
     public Long getProjectId() {
         return projectId;
     }
@@ -33,8 +29,8 @@ public class DCCategoriesEntity {
         this.projectId = projectId;
     }
 
-    @Basic
     @Column(name = "DC_CATEGORY_NAME", nullable = false, length = 40)
+    private String dcCategoryName;
     public String getdcCategoryName() {
         return dcCategoryName;
     }

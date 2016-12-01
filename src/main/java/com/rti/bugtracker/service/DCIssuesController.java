@@ -1,21 +1,23 @@
 package com.rti.bugtracker.service;
 
+import com.rti.bugtracker.domain.DCCategoriesEntity;
+import com.rti.bugtracker.domain.DCCategory;
 import com.rti.bugtracker.domain.DCIssues;
 import com.rti.bugtracker.domain.DCIssuesEntity;
 import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.CollectionUtils;
+import org.springframework.util.xml.TransformerUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 /**
  * Created by gschuell on 10/17/16.
@@ -34,12 +36,14 @@ public class DCIssuesController {
 
 
     private DCIssues dcIssues;
+    private DCCategory dcCategory;
 
     private DCIssuesComparatorStore dcIssuesComparatorStore;
 
     @Autowired
-    public DCIssuesController(DCIssues dcIssues) {
+    public DCIssuesController(DCIssues dcIssues, DCCategory dcCategory) {
         this.dcIssues = dcIssues;
+        this.dcCategory = dcCategory;
        // this.dcIssuesComparatorStore = dcIssuesComparatorStore;
         log.info("Entering DCIssuesController constructor dcIssues.");
     }
@@ -123,6 +127,22 @@ public class DCIssuesController {
             return users.parallelStream().filter(Objects::nonNull).sorted((String e1, String e2) ->(e1.compareToIgnoreCase(e2)))
                                .collect(Collectors.toList());
         return users;
+    }
+
+    @RequestMapping(value = "/categories", method = RequestMethod.GET, produces = "application/json")
+    public List<String> getCategories() {
+        List<DCCategoriesEntity> categories = dcCategory.findAll();
+        List<String> catNames = new ArrayList<>();
+        for (DCCategoriesEntity cat : categories) {
+            catNames.add(cat.getdcCategoryName());
+        }
+
+        if (catNames.size() > 1) {
+            return catNames.stream().filter(Objects::nonNull).sorted((String e1, String e2) -> (e1.compareToIgnoreCase(e2)))
+                    .collect(Collectors.toList());
+        }
+        return catNames;
+
     }
 
     public Comparator<DCIssuesEntity> getComparator(SortTypes type) {

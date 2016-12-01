@@ -16,7 +16,7 @@ import java.util.List;
  * Created by gschuell on 11/14/16.
  */
 @Controller
-@RequestMapping(value = "/issues")
+@RequestMapping(value = "issues/")
 public class UIController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -42,6 +42,9 @@ public class UIController {
         List<DCIssuesEntity> issues = new ArrayList<>();
         model.addAttribute("issues", issuesController.showAllIssues());
 
-        return "admindisplayissues.html";
+        return "admindisplayform.html";
     }
+
+    @RequestMapping(value = "admindisplayissues", method = RequestMethod.POST, consumes = "application/json")
+    public String
 }
