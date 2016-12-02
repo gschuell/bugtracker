@@ -8,14 +8,15 @@ import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.CollectionUtils;
-import org.springframework.util.xml.TransformerUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -144,6 +145,16 @@ public class DCIssuesController {
         return catNames;
 
     }
+
+    @RequestMapping(value = "/problemtype", method = RequestMethod.GET, produces = "application/json")
+    public List<String> getProblemTypes() {
+
+        List<String> problems = dcIssues.findProblemTypes();
+        return problems.stream().filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+    }
+
 
     public Comparator<DCIssuesEntity> getComparator(SortTypes type) {
 

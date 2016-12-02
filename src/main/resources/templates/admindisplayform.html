@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- #INCLUDE FILE="include/config.asp" -->
-    <!-- #INCLUDE FILE="include/common.asp" -->
-
 
     <title>Data Center Issues Administration</title>
 </head>
@@ -13,7 +10,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
     <tr>
-        <td valign="top" colspan=1 nowrap><img src="images/RtiLogo2.gif" border="0" alt="" align=center></td>
+        <td valign="top" colspan=1 nowrap><img src="../static/images/RtiLogo2.gif" border="0" alt="" align=center></td>
     </tr>
 
 </table>
@@ -23,7 +20,7 @@
 <h2>Admin Display Issues</h2>
 
 </div>
-<form name=adminDisplayIssue id=adminDisplayIssue method=post action="AdminDisplayIssues.asp">
+<form name=adminDisplayIssue id=adminDisplayIssue method=post action="admindisplaydata.html">
     <input type=hidden name="sortOrder" value="bug_id">
     <table border=1 align="center">
         <tr><td><b>Status Filter</b></td><td><select name="status_filter">
@@ -43,10 +40,16 @@
         <tr><td><b>Practice Filter</b></td><td><input type=text maxlength=3 size=3 name="practice_filter"></td></tr>
         <tr><td><b>CheckNum Filter</b></td><td><input type=text maxlength=15 size=15 name="checknum_filter"></td></tr>
         <tr><td><b>CheckDate Filter</b></td><td><input type=text maxlength=10 size=10 name="checkdate_filter"></td></tr>
-        <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter"><option value=''></option>
-        <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter"><option value=''></option>
+        <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter">
+        <tr th:each="problem": ${problems}>
+            <option value="${problem}">${problem}</option>
+        <option selected value=''></option>
+        <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter">
+        <tr th:each="assignedUser": ${assignedUsers}>
+        <option value="${assignedUser}">${assignedUser}</option>
+        <option> selected value=' '></option>
     </select></td></tr>
-        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="start_date_filter"></td></tr>
+        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="start_date_filter"></t></tr>
         <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="end_date_filter"></td></tr>
 
     </table>
