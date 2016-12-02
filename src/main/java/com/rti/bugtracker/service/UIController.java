@@ -1,6 +1,7 @@
 package com.rti.bugtracker.service;
 
 import com.rti.bugtracker.domain.DCIssuesEntity;
+import com.rti.bugtracker.util.SearchRequestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +42,22 @@ public class UIController {
         return "index";
     }
 
+    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
+    public String greetings(Model model) {
+        model.addAttribute("greeting", new DCIssuesEntity());
+        return "index";
+    }
+
+
     //@GetMapping("/getissues")
     @RequestMapping(value = "/admindisplayform", method = RequestMethod.GET, headers = "content_type=application/json")
     public  String adminDisplayForm(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
+
         List<DCIssuesEntity> issues = new ArrayList<>();
         model.addAttribute("problems", issuesController.getProblemTypes());
         model.addAttribute("assignedUsers", issuesController.findAssignedUsers());
+        SearchRequestData searchData = new SearchRequestData();
 
         return "admindisplayform";
     }
