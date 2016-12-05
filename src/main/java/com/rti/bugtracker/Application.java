@@ -2,13 +2,13 @@ package com.rti.bugtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 //@ComponentScan(basePackageClasses = BugTrackerController.class)
-@PropertySource("classpath:application.properties")
+//@PropertySource("classpath:application.properties")
 
-public class Application {
+public class Application  {
+
 
     public static void main(String[] args) {
 

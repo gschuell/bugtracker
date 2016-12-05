@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -29,12 +31,13 @@ import java.sql.SQLException;
 
 @Configuration
 @EnableAutoConfiguration
+@EnableWebMvc
 @ComponentScan("com.rti.bugtracker")
 @EntityScan(basePackages = {"com.rti.bugtracker"})
 @EnableJpaRepositories(basePackages = {"com.rti.bugtracker"})
 @EnableSpringDataWebSupport
 @EnableTransactionManagement
-public class ApplicationConfiguration {
+public class ApplicationConfiguration extends SpringBootServletInitializer {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -56,7 +59,20 @@ public class ApplicationConfiguration {
     @Value("${tower.url}")
     private String towerUrl;
 
+/*
+    @Bean
+    public ViewResolver getViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/templates");
+        resolver.setSuffix(".html");
+        return resolver;
+    }
 
+    public void configureDedaultServletHandling(
+            DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+    */
 
     @Bean
     public EntityManagerFactory entityManagerFactory() throws SQLException {
@@ -83,13 +99,6 @@ public class ApplicationConfiguration {
         return txManager;
     }
 
-    /*
-    @Bean
-    @ConfigurationProperties("dcbugs")
-            public DataSource dcbugsDataSource() {
-                return DataSourceBuilder.create().build();
-            }
-*/
     @Bean
     @Primary
     @ConfigurationProperties("dcbugs")

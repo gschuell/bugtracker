@@ -17,7 +17,7 @@ import java.util.List;
  * Created by gschuell on 11/14/16.
  */
 @Controller
-//@RequestMapping(value = "/issues")
+@RequestMapping(value = "/issues")
 public class UIController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -38,20 +38,22 @@ public class UIController {
 
 
     @RequestMapping(value = "/")
-    public String index() {
+    public String getIndex() {
+        log.info("About to load home page");
         return "index";
     }
 
     @RequestMapping(value = "/greeting", method = RequestMethod.GET)
     public String greetings(Model model) {
+        log.info("about to load greeting page");
         model.addAttribute("greeting", new DCIssuesEntity());
-        return "index";
+        return "greeting";
     }
 
 
     //@GetMapping("/getissues")
     @RequestMapping(value = "/admindisplayform", method = RequestMethod.GET, headers = "content_type=application/json")
-    public  String adminDisplayForm(Model model) {
+    public  String adminDisplayFormPage(Model model) {
         //Map<String,Object> model = new HashMap<String,Object>();
 
         List<DCIssuesEntity> issues = new ArrayList<>();
