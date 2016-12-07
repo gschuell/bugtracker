@@ -63,17 +63,16 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/templates");
+        resolver.setPrefix("templates/");
         resolver.setSuffix(".html");
         return resolver;
     }
 
-    public void configureDedaultServletHandling(
+    public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-    */
-
+*/
     @Bean
     public EntityManagerFactory entityManagerFactory() throws SQLException {
 

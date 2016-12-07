@@ -1,4 +1,4 @@
-package com.rti.bugtracker.service;
+package com.rti.bugtracker.controllers;
 
 import com.rti.bugtracker.domain.DCCategoriesEntity;
 import com.rti.bugtracker.domain.DCCategory;

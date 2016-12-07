@@ -4,28 +4,30 @@
 
     <title>Data Center Issues Administration</title>
 </head>
-<body text="black" leftmargin=5 topmargin=5>
+<body text="black" leftmargin="5" topmargin="5">
 
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-    <tr>
-        <td valign="top" colspan=1 nowrap><img src="../static/images/RtiLogo2.gif" border="0" alt="" align=center></td>
+    <tr  valign="top" colspan="1">
+        <td valign="top" colspan="1">
+            <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
+                 th:src="@{images/RtiLogo2.gif}"/> </td>
     </tr>
-
 </table>
-<hr>
+<hr/>
+
 <div style="text-align:center; width:100%">
-<h1>Practice Admin</h1>
-<h2>Admin Display Issues</h2>
+    <h1>Practice Admin</h1>
+    <h2>Admin Display Issues</h2>
 
 </div>
-<form name=adminDisplayIssue id=adminDisplayIssue method=post action="admindisplaydata.html">
-    <input type=hidden name="sortOrder" value="bug_id">
-    <table border=1 align="center">
+<form name="adminDisplayIssue" id="adminDisplayIssue" method="post" action="admindisplaydata.html">
+    <input type="hidden" name="sortOrder" value="bug_id">
+    <table border="1" align="center">
         <tr><td><b>Status Filter</b></td><td><select name="status_filter">
             <option value="All">Display All</option>
-            <option selected value="Open">Open</option>
+            <option selected="" value="Open">Open</option>
             <option value="Pending">Pending</option>
             <option value="AwaitingResponse">AwaitingResponse</option>
             <option value="Resolved">Resolved</option>
@@ -33,24 +35,25 @@
             <option value="DC Reviewed">DC Reviewed</option>
         </select>
         </td></tr>
-        <tr><td><b>IssueID</b></td><td><input type=text name="issue_filter" value="All"></td></tr>
-        <tr><td><b>Provider Filter</b></td><td><input type=text maxlength=6 size=6 name="provider_filter"></td></tr>
-        <tr><td><b>Parent Document Number Filter</b></td><td><input type=text maxlength=16 size=16 name="pardoc_filter"></td></tr>
-        <tr><td><b>Payor Filter</b></td><td><input type=text maxlength=5 size=5 name="payor_filter"></td></tr>
-        <tr><td><b>Practice Filter</b></td><td><input type=text maxlength=3 size=3 name="practice_filter"></td></tr>
-        <tr><td><b>CheckNum Filter</b></td><td><input type=text maxlength=15 size=15 name="checknum_filter"></td></tr>
-        <tr><td><b>CheckDate Filter</b></td><td><input type=text maxlength=10 size=10 name="checkdate_filter"></td></tr>
-        <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter">
-        <tr th:each="problem": ${problems}>
+        <tr><td><b>IssueID</b></td><td><input type="text" name="issue_filter" value="All"/></td></tr>
+        <tr><td><b>Provider Filter</b></td><td><input type="text" maxlength="6" size="6" name="provider_filter"/></td></tr>
+        <tr><td><b>Parent Document Number Filter</b></td><td><input type="text" maxlength="16" size="16" name="pardoc_filter"/></td></tr>
+        <tr><td><b>Payor Filter</b></td><td><input type="text" maxlength="5" size="5" name="payor_filter"/></td></tr>
+        <tr><td><b>Practice Filter</b></td><td><input type="text" maxlength="3" size="3" name="practice_filter"/></td></tr>
+        <tr><td><b>CheckNum Filter</b></td><td><input type="text" maxlength="15" size="15" name="checknum_filter"/></td></tr>
+        <tr><td><b>CheckDate Filter</b></td><td><input type="text" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
+        <tr><td><b>Problem Type Filter</b></td><td><select type="text" name="problem_type_filter">
+            <tr th:each="problem : ${problems}"></tr>
             <option value="${problem}">${problem}</option>
-        <option selected value=''></option>
-        <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter">
-        <tr th:each="assignedUser": ${assignedUsers}>
-        <option value="${assignedUser}">${assignedUser}</option>
-        <option> selected value=' '></option>
-    </select></td></tr>
-        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="start_date_filter"></t></tr>
-        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="end_date_filter"></td></tr>
+        </select>
+        </td>
+        </tr>
+        <tr><td><b>Assigned To Filter</b></td><td><select type="text" name="assigned_to_filter">
+            <tr th:each="assignedUser : ${assignedUsers}"></tr>
+            <option value="${assignedUser}">${assignedUser}</option>
+        </select></td></tr>
+        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="start_date_filter"/></td></tr>
+        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="end_date_filter"/></td></tr>
 
     </table>
 </form>
@@ -58,9 +61,9 @@
 <br>
 <br>
 <div style="text-align:center; width:100%">
-<input type=submit value="DisplayIssues" id=btnAction name=btnAction>
-<input type=submit value="MainMenu" id=btnAction name=btnAction>
-<input type=hidden name=LastSort value="<%=LastSort%>">
+    <input type=submit value="DisplayIssues" id=btnAction name=btnAction/>
+    <input type=submit value="MainMenu" id=btnAction name=btnAction/>
+    <input type=hidden name=LastSort value="<%=LastSort%>"/>
 </div>
 </body>
 </html>
