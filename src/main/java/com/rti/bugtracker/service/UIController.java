@@ -36,20 +36,13 @@ public class UIController {
      * to get all the requested issues and pass them to the page for display.
      */
 
-
-    @RequestMapping(value = "/")
+    /*
+    @RequestMapping(value = "/", method=RequestMethod.GET, produces="application/json")
     public String getIndex() {
         log.info("About to load home page");
         return "index";
     }
-
-    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
-    public String greetings(Model model) {
-        log.info("about to load greeting page");
-        model.addAttribute("greeting", new DCIssuesEntity());
-        return "greeting";
-    }
-
+   */
 
     //@GetMapping("/getissues")
     @RequestMapping(value = "/admindisplayform", method = RequestMethod.GET, headers = "content_type=application/json")
@@ -57,6 +50,7 @@ public class UIController {
         //Map<String,Object> model = new HashMap<String,Object>();
 
         List<DCIssuesEntity> issues = new ArrayList<>();
+        log.info("About to get problem types and assigned users");
         model.addAttribute("problems", issuesController.getProblemTypes());
         model.addAttribute("assignedUsers", issuesController.findAssignedUsers());
         SearchRequestData searchData = new SearchRequestData(null, null, null);
@@ -64,10 +58,12 @@ public class UIController {
         return "admindisplayform";
     }
 
+    /*
     //@PostMapping("/getissues")
     @RequestMapping(value = "/admindisdplayform", method = RequestMethod.POST,  headers = "content_type=application/json")
     public String showIssues(Model model) {
 
         return "admindisplayissues";
     }
+    */
 }
