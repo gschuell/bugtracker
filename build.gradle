@@ -21,10 +21,12 @@ configure(allprojects) {
     apply plugin: 'java'
     apply plugin: 'war'
     apply plugin: 'eclipse'
+    apply plugin: 'idea'
     apply plugin: 'spring-boot'
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
+    apply plugin: 'application'
 }
 
 jar {

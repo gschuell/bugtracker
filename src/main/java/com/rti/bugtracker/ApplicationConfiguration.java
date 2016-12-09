@@ -109,9 +109,8 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
         dataSource.setURL(dcbugsUrl);
         dataSource.setImplicitCachingEnabled(true);
         dataSource.setFastConnectionFailoverEnabled(true);
-        log.info("Created dataSource [{}]", dataSource);
-        log.info("URL used is [{}], username is [{}] and password is [{}]", dcbugsUrl,
-                dcbugsUsername, dcbugsPassword);
+        log.info("Created dataSource [{}] for bugsadmin database.", dataSource);
+
         return dataSource;
     }
 
@@ -125,9 +124,8 @@ public class ApplicationConfiguration extends SpringBootServletInitializer {
         dataSource.setURL(towerUrl);
         dataSource.setImplicitCachingEnabled(true);
         dataSource.setFastConnectionFailoverEnabled(true);
-        log.info("Created dataSource [{}]", dataSource);
-        log.info("URL used is [{}], username is [{}] and password is [{}]", towerUrl,
-                towerUsername, towerPassword);
+        log.info("Created dataSource [{}] for tower database.", dataSource);
+
         return dataSource;
     }
 

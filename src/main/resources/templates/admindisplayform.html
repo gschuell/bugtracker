@@ -3,6 +3,9 @@
 <head>
 
     <title>Data Center Issues Administration</title>
+
+    <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
+          href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" media="screen"/>
 </head>
 <body text="black" leftmargin="5" topmargin="5">
 
@@ -12,7 +15,7 @@
     <tr  valign="top" colspan="1">
         <td valign="top" colspan="1">
             <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
-                 th:src="@{images/RtiLogo2.gif}"/> </td>
+                 th:src="@{/images/RtiLogo2.gif}"/> </td>
     </tr>
 </table>
 <hr/>
@@ -23,7 +26,7 @@
 
 </div>
 <form name="adminDisplayIssue" id="adminDisplayIssue" method="post" action="admindisplaydata.html">
-    <input type="hidden" name="sortOrder" value="bug_id">
+    <input type="hidden" name="sortOrder" value="bug_id"/>
     <table border="1" align="center">
         <tr><td><b>Status Filter</b></td><td><select name="status_filter">
             <option value="All">Display All</option>
@@ -42,28 +45,26 @@
         <tr><td><b>Practice Filter</b></td><td><input type="text" maxlength="3" size="3" name="practice_filter"/></td></tr>
         <tr><td><b>CheckNum Filter</b></td><td><input type="text" maxlength="15" size="15" name="checknum_filter"/></td></tr>
         <tr><td><b>CheckDate Filter</b></td><td><input type="text" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
-        <tr><td><b>Problem Type Filter</b></td><td><select type="text" name="problem_type_filter">
-            <tr th:each="problem : ${problems}"></tr>
+        <tr><td><b>Problem Type Filter</b></td><td th:each ="problem : ${problems}"><select type="text" name="problem_type_filter">
             <option value="${problem}">${problem}</option>
         </select>
-        </td>
-        </tr>
-        <tr><td><b>Assigned To Filter</b></td><td><select type="text" name="assigned_to_filter">
-            <tr th:each="assignedUser : ${assignedUsers}"></tr>
-            <option value="${assignedUser}">${assignedUser}</option>
-        </select></td></tr>
+        </td></tr>
+        <tr><td><b>Assigned To Filter</b></td><td th:each="assignedUser : ${assignedUsers}">
+            <select type="text" name="assigned_to_filter">
+                <option value="${assignedUser}">${assignedUser}</option>
+            </select>
+        </td></tr>
         <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="start_date_filter"/></td></tr>
         <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="end_date_filter"/></td></tr>
 
     </table>
 </form>
-</div>
-<br>
-<br>
+<br/>
+<br/>
 <div style="text-align:center; width:100%">
-    <input type=submit value="DisplayIssues" id=btnAction name=btnAction/>
-    <input type=submit value="MainMenu" id=btnAction name=btnAction/>
-    <input type=hidden name=LastSort value="<%=LastSort%>"/>
+    <input type="submit" value="DisplayIssues" id="btnAction" name="btnAction"/>
+    <input type="submit" value="MainMenu" id="btnAction1" name="btnAction1"/>
+    <input type="hidden" name="LastSort" value="lastSort"/>
 </div>
 </body>
 </html>

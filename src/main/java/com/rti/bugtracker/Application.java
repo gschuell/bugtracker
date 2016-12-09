@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@ComponentScan(basePackageClasses = BugTrackerController.class)
 //@PropertySource("classpath:application.properties")
 
-public class Application  {
+public class Application   {
 
 
     public static void main(String[] args) {

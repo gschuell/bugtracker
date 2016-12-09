@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * Created by gschuell on 10/17/16.
  */
-@RestController
+//@RestController
 @RequestMapping(value = "/issues")
 public class DCIssuesController {
 

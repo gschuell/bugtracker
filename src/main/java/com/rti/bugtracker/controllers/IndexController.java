@@ -2,7 +2,6 @@ package com.rti.bugtracker.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/issues")
-public class IndexController implements ErrorController {
+public class IndexController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -23,7 +22,7 @@ public class IndexController implements ErrorController {
         log.info("About to load home page");
         return "index";
     }
-
+/*
     @RequestMapping( value = PATH )
     public String error() {
         return "Error Handling";
@@ -33,6 +32,6 @@ public class IndexController implements ErrorController {
     public String getErrorPath() {
         return PATH;
     }
-
+*/
 
 }

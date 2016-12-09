@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by gschuell on 12/7/16.
  */
 @Controller
-@RequestMapping("/issue")
+@RequestMapping("/issues")
 public class IssueController {
 
     @RequestMapping("/getissues")
