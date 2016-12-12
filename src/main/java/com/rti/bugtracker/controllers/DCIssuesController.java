@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Created by gschuell on 10/17/16.
  */
-//@RestController
+@RestController
 @RequestMapping(value = "/issues")
 public class DCIssuesController {
 
@@ -109,6 +110,18 @@ public class DCIssuesController {
                           .collect(Collectors.toList());
         return dcIssuesList;
     }
+
+    @RequestMapping(value = "/bycategory/{category}", method = RequestMethod.GET, produces = "application/json")
+    public List<DCIssuesEntity> findByCategory(@PathVariable("category") String assignedTo) {
+        //log.info("Looking for Issues assigned to {}", assignedTo);
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findByAssignedTo(assignedTo));
+        if (dcIssuesList.size() > 1)
+            return dcIssuesList.parallelStream().filter(Objects::nonNull).sorted((DCIssuesEntity e1,
+                                                                                  DCIssuesEntity e2) ->(int)e1.getBugId() - ((int)e2.getBugId()))
+                    .collect(Collectors.toList());
+        return dcIssuesList;
+    }
+
 
     /**
      * This endpoint returns a list of users contained in the userLogin column of the AMR_dcIssues
