@@ -1,9 +1,16 @@
 package com.rti.bugtracker.controllers;
 
+import com.rti.bugtracker.domain.DCIssuesEntity;
+import com.rti.bugtracker.util.SearchRequestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gschuell on 11/14/16.
@@ -35,7 +42,7 @@ public class UIController {
         return "index";
     }
    */
-/*
+
     //@GetMapping("/getissues")
     @RequestMapping(value = "/getissues", method = RequestMethod.GET, headers = "content_type=application/json")
     public  String adminDisplayFormPage(Model model) {
@@ -49,7 +56,7 @@ public class UIController {
 
         return "admindisplayform";
     }
-*/
+
     /*
     //@PostMapping("/getissues")
     @RequestMapping(value = "/admindisdplayform", method = RequestMethod.POST,  headers = "content_type=application/json")

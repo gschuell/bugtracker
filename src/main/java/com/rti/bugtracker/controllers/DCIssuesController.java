@@ -122,6 +122,12 @@ public class DCIssuesController {
         return dcIssuesList;
     }
 
+    @RequestMapping(value = "/bystatus/{bugStatus}", method = RequestMethod.GET, produces = "application/json")
+    public List<DCIssuesEntity> findAllIssuesByBugStatus(@PathVariable("bugStatus") String bugStatus) {
+
+        List<DCIssuesEntity> dcIssuesList = new ArrayList<>(dcIssues.findAllIssuesByBugStatus(bugStatus));
+        return dcIssuesList;
+    }
 
     /**
      * This endpoint returns a list of users contained in the userLogin column of the AMR_dcIssues

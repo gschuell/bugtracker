@@ -23,5 +23,7 @@ public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
     @Query("select Distinct u.problemType from #{#entityName} u order by u.problemType")
     List<String> findProblemTypes();
 
+    @Query("select u from #{#entityName} u where u.bugStatus = ?")
+    List<DCIssuesEntity> findAllIssuesByBugStatus(String bugStatus);
 
 }
