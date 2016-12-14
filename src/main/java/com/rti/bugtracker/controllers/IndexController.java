@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Created by gschuell on 12/6/16.
  */
-@Controller
-@RequestMapping("/issues")
+//@Controller
+//@RequestMapping("/ui")
 public class IndexController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String PATH = "/error";
 
-    @RequestMapping(value = "/", method= RequestMethod.GET)
+    //@RequestMapping(value = "/", method= RequestMethod.GET)
     public String getIndex() {
         log.info("About to load home page");
         return "index";

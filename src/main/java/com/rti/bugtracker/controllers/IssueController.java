@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by gschuell on 12/7/16.
  */
-@Controller
-@RequestMapping("/issues")
+//@Controller
+//@RequestMapping("/ui")
 public class IssueController {
 
-    @RequestMapping("/getissues")
+   //@RequestMapping("/getissues")
     public String getIssues(Model model) {
 
         return "admindisplayform";
