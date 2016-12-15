@@ -9,6 +9,7 @@
 .gradle
 "~/"
 out/*
+bugtrackerLogs/
 logs/*
 build/*
 
