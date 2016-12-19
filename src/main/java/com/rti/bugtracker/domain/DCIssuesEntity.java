@@ -1,7 +1,11 @@
 package com.rti.bugtracker.domain;
 
-import javax.persistence.*;
-import java.sql.Time;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by gschuell on 10/14/16.
@@ -17,13 +21,13 @@ public class DCIssuesEntity {
         return bugId;
     }
     @Column(name = "BUG_ENTERED_DATE", nullable = false)
-    private Time bugEnteredDate;
-    public Time getBugEnteredDate() {
+    private Timestamp bugEnteredDate;
+    public Timestamp getBugEnteredDate() {
         return bugEnteredDate;
     }
     @Column(name = "BUG_FIXED_DATE", nullable = false)
-    private Time bugFixedDate;
-    public Time getBugFixedDate() {
+    private Timestamp bugFixedDate;
+    public Timestamp getBugFixedDate() {
         return bugFixedDate;
     }
     @Column(name = "BUG_TITLE", nullable = false, length = 40)
@@ -52,25 +56,25 @@ public class DCIssuesEntity {
     @Column(name = "PARDOCNO", nullable = false, length = 16)
     private String pardocno;
     @Column(name = "DEPDT", nullable = false)
-    private Time depdt;
+    private Date depdt;
     @Column(name = "CHECKNUM", nullable = false, length = 15)
     private String checknum;
     @Column(name = "CHECKAMT", nullable = false, length = 12)
     private String checkamt;
     @Column(name = "CHECK_DATE", nullable = false)
-    private Time checkDate;
+    private Date checkDate;
     @Column(name = "LAST_UPDATED", nullable = false)
-    private Time lastUpdated;
+    private Timestamp lastUpdated;
 
     public void setBugId(long bugId) {
         this.bugId = bugId;
     }
 
-    public void setBugEnteredDate(Time bugEnteredDate) {
+    public void setBugEnteredDate(Timestamp bugEnteredDate) {
         this.bugEnteredDate = bugEnteredDate;
     }
 
-    public void setBugFixedDate(Time bugFixedDate) {
+    public void setBugFixedDate(Timestamp bugFixedDate) {
         this.bugFixedDate = bugFixedDate;
     }
 
@@ -158,11 +162,11 @@ public class DCIssuesEntity {
         this.pardocno = pardocno;
     }
 
-    public Time getDepdt() {
+    public Date getDepdt() {
         return depdt;
     }
 
-    public void setDepdt(Time depdt) {
+    public void setDepdt(Date depdt) {
         this.depdt = depdt;
     }
 
@@ -182,19 +186,19 @@ public class DCIssuesEntity {
         this.checkamt = checkamt;
     }
 
-    public Time getCheckDate() {
+    public Date getCheckDate() {
         return checkDate;
     }
 
-    public void setCheckDate(Time checkDate) {
+    public void setCheckDate(Date checkDate) {
         this.checkDate = checkDate;
     }
 
-    public Time getLastUpdated() {
+    public Timestamp getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Time lastUpdated) {
+    public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
