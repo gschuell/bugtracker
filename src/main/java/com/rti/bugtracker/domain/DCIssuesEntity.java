@@ -55,13 +55,13 @@ public class DCIssuesEntity {
     private String extpayor;
     @Column(name = "PARDOCNO", nullable = false, length = 16)
     private String pardocno;
-    @Column(name = "DEPDT", nullable = false)
+    @Column(name = "DEPDT", nullable = false, length = 16)
     private Date depdt;
     @Column(name = "CHECKNUM", nullable = false, length = 15)
     private String checknum;
     @Column(name = "CHECKAMT", nullable = false, length = 12)
     private String checkamt;
-    @Column(name = "CHECK_DATE", nullable = false)
+    @Column(name = "CHECK_DATE", nullable = false, length = 12)
     private Date checkDate;
     @Column(name = "LAST_UPDATED", nullable = false)
     private Timestamp lastUpdated;
@@ -202,6 +202,7 @@ public class DCIssuesEntity {
         this.lastUpdated = lastUpdated;
     }
 
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -256,4 +257,5 @@ public class DCIssuesEntity {
         result = 31 * result + (lastUpdated != null ? lastUpdated.hashCode() : 0);
         return result;
     }
+    */
 }
