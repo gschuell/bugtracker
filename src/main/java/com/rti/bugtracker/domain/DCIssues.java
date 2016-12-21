@@ -16,7 +16,6 @@ public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
 
     List<DCIssuesEntity> findByAssignedTo(String assignedTo);
 
-    //@Query("select Distinct u.assignedto from #{#entityName} u")
     @Query("select Distinct u.assignedTo from #{#entityName} u order by u.assignedTo")
     List<String> findAssignedUsers();
 
@@ -25,5 +24,8 @@ public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
 
     @Query("select u from #{#entityName} u where u.bugStatus = ?")
     List<DCIssuesEntity> findAllIssuesByBugStatus(String bugStatus);
+
+    @Query("select u from #{#entityName} u where u.bugStatus = ? and u.payorId = ?")
+    List<DCIssuesEntity> findAllIssuesByBugStatusAndPayorId(String bugStatus, String payorId);
 
 }

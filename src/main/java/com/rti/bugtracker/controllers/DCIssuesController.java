@@ -173,6 +173,12 @@ public class DCIssuesController {
 
     }
 
+    @RequestMapping(value = "/statusand")
+    List<DCIssuesEntity> findAllIssuesByBugStatusAndPayorId(String bugStatus, String payorId) {
+
+        return null;
+    }
+
 
     public Comparator<DCIssuesEntity> getComparator(SortTypes type) {
 
