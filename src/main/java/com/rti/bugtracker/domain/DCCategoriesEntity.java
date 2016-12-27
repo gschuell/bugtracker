@@ -11,6 +11,16 @@ public class DCCategoriesEntity {
     @Id
     @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 0)
     private Long dcCategoryId;
+
+
+    @Column(name = "PROJECT_ID", nullable = false, precision = 0)
+    private Long projectId;
+
+
+    @Column(name = "DC_CATEGORY_NAME", nullable = false, length = 40)
+    private String dcCategoryName;
+
+
     public Long getdcCategoryId() {
         return dcCategoryId;
     }
@@ -19,8 +29,6 @@ public class DCCategoriesEntity {
         this.dcCategoryId = dcCategoryId;
     }
 
-    @Column(name = "PROJECT_ID", nullable = false, precision = 0)
-    private Long projectId;
     public Long getProjectId() {
         return projectId;
     }
@@ -29,8 +37,6 @@ public class DCCategoriesEntity {
         this.projectId = projectId;
     }
 
-    @Column(name = "DC_CATEGORY_NAME", nullable = false, length = 40)
-    private String dcCategoryName;
     public String getdcCategoryName() {
         return dcCategoryName;
     }
