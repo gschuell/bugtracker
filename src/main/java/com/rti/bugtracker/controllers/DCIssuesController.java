@@ -1,9 +1,6 @@
 package com.rti.bugtracker.controllers;
 
-import com.rti.bugtracker.domain.DCCategoriesEntity;
-import com.rti.bugtracker.domain.DCCategory;
-import com.rti.bugtracker.domain.DCIssues;
-import com.rti.bugtracker.domain.DCIssuesEntity;
+import com.rti.bugtracker.domain.*;
 import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,15 +35,18 @@ public class DCIssuesController {
 
     private DCIssues dcIssues;
     private DCCategory dcCategory;
+    private DCDeveloperNames dcDeveloperNames;
 
     private DCIssuesComparatorStore dcIssuesComparatorStore;
 
     @Autowired
-    public DCIssuesController(DCIssues dcIssues, DCCategory dcCategory) {
+    public DCIssuesController(DCIssues dcIssues, DCCategory dcCategory, DCDeveloperNames dcDeveloperNames) {
+        log.info("Entering DCIssuesController constructor dcIssues.");
         this.dcIssues = dcIssues;
         this.dcCategory = dcCategory;
+        this.dcDeveloperNames = dcDeveloperNames;
        // this.dcIssuesComparatorStore = dcIssuesComparatorStore;
-        log.info("Entering DCIssuesController constructor dcIssues.");
+
     }
 
     public DCIssuesController() {}
@@ -170,6 +170,14 @@ public class DCIssuesController {
         List<String> problems = dcIssues.findProblemTypes();
         return problems.stream().filter(Objects::nonNull)
                 .collect(Collectors.toList());
+
+    }
+
+    @RequestMapping(value = "/developers", method = RequestMethod.GET, produces = "application/json")
+    public List<DCDeveloperNamesEntity> getDeveloperNames() {
+
+        List<DCDeveloperNamesEntity> devNames = dcDeveloperNames.findAll();
+        return devNames.stream().filter(Objects::nonNull).collect(Collectors.toList());
 
     }
 

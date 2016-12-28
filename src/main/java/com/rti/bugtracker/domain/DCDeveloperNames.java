@@ -10,6 +10,4 @@ import java.util.List;
  */
 public interface DCDeveloperNames extends JpaRepository<DCDeveloperNamesEntity, String>{
 
-    @Query("select u from #{#entityName}")
-    public List<DCDeveloperNames> findByName();
 }
