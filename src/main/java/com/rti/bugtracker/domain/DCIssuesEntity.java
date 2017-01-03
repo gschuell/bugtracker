@@ -17,9 +17,6 @@ public class DCIssuesEntity {
     @Id
     @Column(name = "BUG_ID", nullable = false, precision = 0)
     private long bugId;
-    public long getBugId() {
-        return bugId;
-    }
     @Column(name = "BUG_ENTERED_DATE", nullable = false)
     private Timestamp bugEnteredDate;
     public Timestamp getBugEnteredDate() {
@@ -65,6 +62,10 @@ public class DCIssuesEntity {
     private Date checkDate;
     @Column(name = "LAST_UPDATED", nullable = false)
     private Timestamp lastUpdated;
+
+    public long getBugId() {
+        return bugId;
+    }
 
     public void setBugId(long bugId) {
         this.bugId = bugId;
@@ -201,8 +202,7 @@ public class DCIssuesEntity {
     public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
-    /*
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

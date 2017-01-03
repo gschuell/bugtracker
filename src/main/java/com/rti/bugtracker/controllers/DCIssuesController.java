@@ -60,9 +60,9 @@ public class DCIssuesController {
      */
 
     @RequestMapping(value = "/{bugId}", method = RequestMethod.GET, produces = "application/json")
-    public DCIssuesEntity showIssue(@PathVariable("bugId") long bugId ) {
+    public List<DCIssuesEntity> showIssue(@PathVariable("bugId") long bugId ) {
         log.info("Looking for a bug entry with id {}", bugId);
-        return dcIssues.findOne(bugId);
+        return dcIssues.findOneSingleIssue(bugId);
     }
 
     /**

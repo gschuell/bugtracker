@@ -10,6 +10,14 @@ import java.util.List;
  */
 public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
 
+    /*
+       In order to fetch a single issue and use the same code to handle onr or many issues,
+       it is necessary to return a singleton as a single list so the JSON responses can
+       be handled equally.
+    */
+    @Query("select u from #{#entityName} u where u.bugId = ?")
+    List<DCIssuesEntity> findOneSingleIssue(long bugId);
+
     List<DCIssuesEntity> findAll();
 
     List<DCIssuesEntity> findAllByOrderByBugIdAsc();
