@@ -33,7 +33,4 @@ public interface DCIssues extends JpaRepository<DCIssuesEntity, Long> {
     @Query("select u from #{#entityName} u where u.bugStatus = ?")
     List<DCIssuesEntity> findAllIssuesByBugStatus(String bugStatus);
 
-   // @Query("select u from #{#entityName} u where u.bugStatus = ? and u.payorId = ?")
-   // List<DCIssuesEntity> findAllIssuesByBugStatusAndPayorId(String bugStatus, String payorId);
-
 }
