@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 /**
  * Created by gschuell on 10/14/16.
@@ -18,13 +17,13 @@ public class DCIssuesEntity {
     @Column(name = "BUG_ID", nullable = false, precision = 0)
     private long bugId;
     @Column(name = "BUG_ENTERED_DATE", nullable = false)
-    private Timestamp bugEnteredDate;
-    public Timestamp getBugEnteredDate() {
+    private Date bugEnteredDate;
+    public Date getBugEnteredDate() {
         return bugEnteredDate;
     }
     @Column(name = "BUG_FIXED_DATE", nullable = false)
-    private Timestamp bugFixedDate;
-    public Timestamp getBugFixedDate() {
+    private Date bugFixedDate;
+    public Date getBugFixedDate() {
         return bugFixedDate;
     }
     @Column(name = "BUG_TITLE", nullable = false, length = 40)
@@ -54,14 +53,14 @@ public class DCIssuesEntity {
     private String pardocno;
     @Column(name = "DEPDT", nullable = false, length = 16)
     private Date depdt;
-    @Column(name = "CHECKNUM", nullable = false, length = 15)
+    @Column(name = "CHECKNUM", nullable = false, length = 20)
     private String checknum;
-    @Column(name = "CHECKAMT", nullable = false, length = 12)
+    @Column(name = "CHECKAMT", nullable = false, length = 12, precision = 2)
     private String checkamt;
     @Column(name = "CHECK_DATE", nullable = false, length = 12)
     private Date checkDate;
     @Column(name = "LAST_UPDATED", nullable = false)
-    private Timestamp lastUpdated;
+    private Date lastUpdated;
 
     public long getBugId() {
         return bugId;
@@ -71,11 +70,11 @@ public class DCIssuesEntity {
         this.bugId = bugId;
     }
 
-    public void setBugEnteredDate(Timestamp bugEnteredDate) {
+    public void setBugEnteredDate(Date bugEnteredDate) {
         this.bugEnteredDate = bugEnteredDate;
     }
 
-    public void setBugFixedDate(Timestamp bugFixedDate) {
+    public void setBugFixedDate(Date bugFixedDate) {
         this.bugFixedDate = bugFixedDate;
     }
 
@@ -195,11 +194,11 @@ public class DCIssuesEntity {
         this.checkDate = checkDate;
     }
 
-    public Timestamp getLastUpdated() {
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Timestamp lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 /*
