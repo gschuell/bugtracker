@@ -5,10 +5,7 @@ import com.rti.bugtracker.util.DCIssuesComparatorStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -90,6 +87,13 @@ public class DCIssuesController {
                    .collect(Collectors.toList());
         log.info("Select finished allIssues in [{}] milliseconds.", System.currentTimeMillis() - startTime);
         return dcIssuesList;
+    }
+
+    @RequestMapping(value = "/update/{issueId}", method = RequestMethod.PUT)
+    public DCIssuesEntity saveIssue(@PathVariable(value = "issueId") long issueId,
+                                    @RequestBody DCIssuesEntity issue) {
+
+        return dcIssues.save(issue);
     }
 
     /**
