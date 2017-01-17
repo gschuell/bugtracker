@@ -157,7 +157,7 @@ public class DCIssuesController {
         List<DCCategoriesEntity> categories = dcCategory.findAll();
         List<String> catNames = new ArrayList<>();
         for (DCCategoriesEntity cat : categories) {
-            catNames.add(cat.getdcCategoryName());
+            catNames.add(cat.getCategoryName());
         }
 
         if (catNames.size() > 1) {
@@ -165,6 +165,15 @@ public class DCIssuesController {
                     .collect(Collectors.toList());
         }
         return catNames;
+
+    }
+
+    @RequestMapping(value = "/resolutiontypes", method = RequestMethod.GET, produces = "application/json")
+    public List<DCCategoriesEntity> getResolutionTypes() {
+
+        List<DCCategoriesEntity> resolutions = dcCategory.findAll();
+        return resolutions.stream().filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
     }
 

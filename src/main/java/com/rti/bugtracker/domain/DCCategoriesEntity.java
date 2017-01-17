@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class DCCategoriesEntity {
     @Id
     @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 0)
-    private Long dcCategoryId;
+    private Long categoryId;
 
 
     @Column(name = "PROJECT_ID", nullable = false, precision = 0)
@@ -18,15 +18,15 @@ public class DCCategoriesEntity {
 
 
     @Column(name = "DC_CATEGORY_NAME", nullable = false, length = 40)
-    private String dcCategoryName;
+    private String categoryName;
 
 
-    public Long getdcCategoryId() {
-        return dcCategoryId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setdcCategoryId(Long dcCategoryId) {
-        this.dcCategoryId = dcCategoryId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getProjectId() {
@@ -37,12 +37,12 @@ public class DCCategoriesEntity {
         this.projectId = projectId;
     }
 
-    public String getdcCategoryName() {
-        return dcCategoryName;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setdcCategoryName(String dcCategoryName) {
-        this.dcCategoryName = dcCategoryName;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override
@@ -52,10 +52,10 @@ public class DCCategoriesEntity {
 
         DCCategoriesEntity that = (DCCategoriesEntity) o;
 
-        if (dcCategoryId != null ? !dcCategoryId.equals(that.dcCategoryId) : that.dcCategoryId != null)
+        if (categoryId != null ? !categoryId.equals(that.categoryId) : that.categoryId != null)
             return false;
         if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
-        if (dcCategoryName != null ? !dcCategoryName.equals(that.dcCategoryName) : that.dcCategoryName != null)
+        if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null)
             return false;
 
         return true;
@@ -63,9 +63,9 @@ public class DCCategoriesEntity {
 
     @Override
     public int hashCode() {
-        int result = dcCategoryId != null ? dcCategoryId.hashCode() : 0;
+        int result = categoryId != null ? categoryId.hashCode() : 0;
         result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
-        result = 31 * result + (dcCategoryName != null ? dcCategoryName.hashCode() : 0);
+        result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
         return result;
     }
 }
