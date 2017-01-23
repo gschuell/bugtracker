@@ -1,12 +1,8 @@
 package com.rti.bugtracker.bizlogic;
 
 import com.rti.bugtracker.domain.*;
-import com.rti.dcbugs.domain.CategoryData;
-import com.rti.dcbugs.domain.DCIssuesEntity;
-import com.rti.dcbugs.domain.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -29,12 +25,6 @@ public class DBUtils {
     DCDeveloperNames dcDeveloperNames;
     DCIssues dcIssues;
 
-    @Value("${dbutils.server}")
-    private String dbutilsServer;
-
-    @Value("${dbutils.port}")
-    private String dbutilsPort;
-
     public DBUtils(DCCategory dcCategory, DCDeveloperNames dcDeveloperNames, DCIssues dcIssues) {
 
         this.dcCategory = dcCategory;
@@ -45,11 +35,8 @@ public class DBUtils {
 
     public List<String> getProblemTypes() {
 
-        miscData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":" + dbutilsPort + "/issues/problemtype",
-                String[].class);
-        //log.info("Value of miscData{}", miscData.getBody());
-        List<DCCategoriesEntity>
-        String[] problems = miscData.getBody();
+        List<String> problems = dcIssues.findProblemTypes();
+
         List<String> problemList = new ArrayList<>();
         for (String probStr : problems) {
             problemList.add(probStr);
@@ -61,11 +48,8 @@ public class DBUtils {
 
     public List<DCCategoriesEntity> getResolutionTypes() {
 
-
-
-
-        List<CategoryData> resolutions = ;
-        for (CategoryData resolution : resolutionList) {
+        List<DCCategoriesEntity> resolutions = dcCategory.findAll();
+        for (DCCategoriesEntity resolution : resolutions) {
             resolutions.add(resolution);
         }
 
@@ -76,30 +60,12 @@ public class DBUtils {
 
     public List<String> getAssignedUsers() {
 
-        miscData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":" + dbutilsPort + "/issues/assignedusers",
-                String[].class);
-        String[] users = miscData.getBody();
-        List<String> userList = new ArrayList<>();
-        for (String userName : users) {
-            userList.add(userName);
-        }
-
-        return userList;
-
+        return dcIssues.findAssignedUsers();
     }
 
-    public List<UserData> getUsers() {
+    public List<DCDeveloperNamesEntity> getUsers() {
 
-        userData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":" + dbutilsPort + "/issues/developers",
-                UserData[].class);
-        UserData[] users = userData.getBody();
-        List<UserData> userList = new ArrayList<>();
-        for (UserData tmp : users) {
-            userList.add(tmp);
-        }
-
-        return userList;
-
+        return dcDeveloperNames.findAll();
     }
 
 
@@ -116,38 +82,21 @@ public class DBUtils {
 
     public List<DCIssuesEntity> getIssuesData(AdminDisplayForm searchArgs) {
 
-        if (!searchArgs.getIssueId().equals("All")) {
-            //issuesData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":"
-            //        + dbutilsPort + "/issues/" + searchArgs.getIssueId(), DCIssuesEntity[].class);
+        List<DCIssuesEntity> issuesList = null;
 
+        if (!searchArgs.getIssueId().equals("All")) {
 
         }
         else if (searchArgs.getStatus().equals("Display All"))
         {
-            issuesData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":"
-                    + dbutilsPort + "/issues/allIssues", DCIssuesEntity[].class);
+             issuesList = dcIssues.findAll();
         }
         else {
 
-            issuesData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":"
-                    + dbutilsPort + "/issues/bystatus/" + searchArgs.getStatus(), DCIssuesEntity[].class);
+            issuesList = dcIssues.findAllIssuesByBugStatus(searchArgs.getStatus());
         }
 
-        DCIssuesEntity[] issuesList = issuesData.getBody();
-
-        List<DCIssuesEntity> dcIssuesList = new ArrayList<DCIssuesEntity>();
-        for (DCIssuesEntity tmp : issuesList) {
-            dcIssuesList.add(tmp);
-        }
-
-        /*
-        if (dcIssuesList.size() > 1) {
-            return dcIssuesList.parallelStream().filter(Objects::nonNull)
-                    .sorted((DCIssuesEntity e1, DCIssuesEntity e2) -> (int) e1.getBugId() - ((int) e2.getBugId()))
-                    .collect(Collectors.toList());
-        }
-        */
-        return dcIssuesList;
+        return issuesList;
     }
 
     /**
@@ -159,13 +108,12 @@ public class DBUtils {
      */
     public DCIssuesEntity getIssueData(long issueId) {
 
-        issuesData = issuesTemplate.getForEntity("http://" + dbutilsServer + ":"
-                + dbutilsPort + "/issues/" + issueId, DCIssuesEntity[].class);
+        List<DCIssuesEntity> issuesList = dcIssues.findOneSingleIssue(issueId);
 
-        DCIssuesEntity[] issuesList = issuesData.getBody();
+
         DCIssuesEntity singleIssue = null;
-        if (issuesList.length == 1) {
-            singleIssue = issuesList[0];
+        if (issuesList.size() == 1) {
+            singleIssue = issuesList.get(0);
         }
 
         return singleIssue;
@@ -331,10 +279,10 @@ public class DBUtils {
     }
 
     public void addIssueCount(List<DCIssuesEntity> listIn) {
-        IssueCount count = new IssueCount();
-        count.incrementIssueCount();
+
+        long count = 1;
         for (DCIssuesEntity tmp : listIn) {
-            count.incrementIssueCount();
+            tmp.setIssueCount(count++);
         }
     }
 }

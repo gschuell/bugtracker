@@ -24,19 +24,20 @@ public class IssueController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-
     DCCategory dcCategory;
     DCDeveloperNames dcDeveloperNames;
     DCIssues dcIssues;
     DBUtils dbUtils;
 
+
     @Autowired
     public IssueController(DCCategory dcCategory, DCDeveloperNames dcDeveloperNames,
-                           DCIssues dcIssues, DBUtils dbutils) {
+                           DCIssues dcIssues, DBUtils dbUtils) {
         this.dcCategory = dcCategory;
         this.dcDeveloperNames = dcDeveloperNames;
         this.dcIssues = dcIssues;
         this.dbUtils = dbUtils;
+
     }
 
     @RequestMapping(value = "/getissues", method= RequestMethod.GET, produces="application/json")
@@ -46,7 +47,7 @@ public class IssueController {
             model = new ModelAndView("admindisplayform");
         }
         log.info("About to get problem types and assigned users");
-        model.addObject("problems",  dcCategory.findAll());
+        model.addObject("problems",  dcCategory.findCategoryNames());
         model.addObject("assignedUsers", dcIssues.findAssignedUsers());
         model.addObject("statuses", BugStatusValues.getStatuses());
         model.addObject("admindisplayform", new AdminDisplayForm());
@@ -84,12 +85,12 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/updateIssue", method = RequestMethod.GET)
-    public String updateIssue(@ModelAttribute DCIssuesData issue) {
+    public String updateIssue(@ModelAttribute DCIssuesEntity issue) {
 
 
        // DCIssuesData issue = (DCIssuesData)modelData.get("issueData");
         log.info("About to update issue {}", issue.getBugId());
-        dbutils.updateIssue(issue);
+        dcIssues.save(issue);
 
         return "redirect:/getissues"; // for now
     }
@@ -99,7 +100,7 @@ public class IssueController {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("showusers");
-        model.addObject("users", dbutils.getUsers());
+        model.addObject("users", dcDeveloperNames.findAll());
         return model;
     }
 
@@ -108,7 +109,7 @@ public class IssueController {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("showresolutiontypes");
-        model.addObject("resolutions", dcCategory.);
+        model.addObject("resolutions", dcCategory.findAll());
         return model;
     }
 

@@ -2,10 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Data Center Issues Administration</title>
+    <title><h1 th:text="#{app.name}"/>Data Center Issues Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
           href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" media="screen"/>
+   <!--
+    <style>
+        underline {
+            text-decoration: underline;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            underline;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    -->
 </head>
 <body text="black" leftmargin="5" topmargin="5">
 
@@ -21,50 +46,62 @@
 <hr/>
 
 <div style="text-align:center; width:100%">
-    <h1>Practice Admin</h1>
-    <h2>Admin Display Issues</h2>
+<h1 th:text="#{app.display.name}">Practice Admin</h1>
+    <h2 th:text="#{app.display.issues.message}">Admin Display Issues</h2>
 
 </div>
-<form name="adminDisplayIssue" id="adminDisplayIssue" method="post" action="admindisplaydata.html">
-    <input type="hidden" name="sortOrder" value="bug_id"/>
+<form name="adminDisplayIssue" id="adminDisplayIssue" method="post"
+      action="admindisplaydata" th:action="@{/DCBugs/admindisplaydata}" th:object="${admindisplayform}">
+
     <table border="1" align="center">
-        <tr><td><b>Status Filter</b></td><td><select name="status_filter">
-            <option value="All">Display All</option>
-            <option selected="" value="Open">Open</option>
-            <option value="Pending">Pending</option>
-            <option value="AwaitingResponse">AwaitingResponse</option>
-            <option value="Resolved">Resolved</option>
-            <option value="ReWork">ReWork</option>
-            <option value="DC Reviewed">DC Reviewed</option>
+        <tr><td><b>Status Filter</b></td><td><select name="status_filter" th:field="*{status}">
+           <option th:each="statustext : ${statuses}"
+                   th:value="${statustext}"
+                    th:text="${statustext}"
+                    >${statustext}</option>
         </select>
         </td></tr>
-        <tr><td><b>IssueID</b></td><td><input type="text" name="issue_filter" value="All"/></td></tr>
-        <tr><td><b>Provider Filter</b></td><td><input type="text" maxlength="6" size="6" name="provider_filter"/></td></tr>
-        <tr><td><b>Parent Document Number Filter</b></td><td><input type="text" maxlength="16" size="16" name="pardoc_filter"/></td></tr>
-        <tr><td><b>Payor Filter</b></td><td><input type="text" maxlength="5" size="5" name="payor_filter"/></td></tr>
-        <tr><td><b>Practice Filter</b></td><td><input type="text" maxlength="3" size="3" name="practice_filter"/></td></tr>
-        <tr><td><b>CheckNum Filter</b></td><td><input type="text" maxlength="15" size="15" name="checknum_filter"/></td></tr>
-        <tr><td><b>CheckDate Filter</b></td><td><input type="text" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
-        <tr><td><b>Problem Type Filter</b></td><td th:each ="problem : ${problems}"><select type="text" name="problem_type_filter">
-            <option value="${problem}">${problem}</option>
+        <tr><td><b>IssueID</b></td><td><input type="text" th:field="*{issueId}" value="All" name="issue_filter"/></td></tr>
+        <tr><td><b>Provider Filter</b></td><td><input type="text" maxlength="6" th:field="*{provider}"
+                        size="6" name="provider_filter"/></td></tr>
+        <tr><td><b>Parent Document Number Filter</b></td><td><input type="text" th:field="*{parentDocumentNumber}"
+                        maxlength="16" size="16" name="pardoc_filter"/></td></tr>
+        <tr><td><b>Payor Filter</b></td><td><input type="text" th:field="*{payor}" maxlength="5" size="5" name="payor_filter"/></td></tr>
+        <tr><td><b>Practice Filter</b></td><td><input type="text" th:field="*{practice}" maxlength="3" size="3" name="practice_filter"/></td></tr>
+        <tr><td><b>CheckNum Filter</b></td><td><input type="text" th:field="*{checkNum}" maxlength="15" size="15" name="checknum_filter"/></td></tr>
+        <tr><td><b>CheckDate Filter</b></td><td><input type="text" th:field="*{checkDate}" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
+        <tr><td><b>Problem Type Filter</b></td><td>
+            <select type="text" th:field="*{problemType}" name="problem_type_filter">
+                <option selected="" value=" "></option>
+            <option th:each="problem : ${problems}"
+                    th:value="${problem}"
+            th:text="${problem}">${problem}</option>
         </select>
         </td></tr>
-        <tr><td><b>Assigned To Filter</b></td><td th:each="assignedUser : ${assignedUsers}">
-            <select type="text" name="assigned_to_filter">
-                <option value="${assignedUser}">${assignedUser}</option>
-            </select>
+        <tr><td><b>Assigned To Filter</b></td><td>
+            <select  type="text" th:field="*{assignedTo}" name="assigned_to_filter">
+                <option selected="" value=" "></option>
+             <option th:each="assignedUser : ${assignedUsers}"
+                     th:value="${assignedUser}"
+                     th:text="${assignedUser}">${assignedUser}</option>
+        </select>
         </td></tr>
-        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="start_date_filter"/></td></tr>
-        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type="text" size="12" maxlength="10" name="end_date_filter"/></td></tr>
+        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type="text" th:field="*{startDate}" size="12" maxlength="10" name="start_date_filter"/></td></tr>
+        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type="text" th:field="*{endDate}" size="12" maxlength="10" name="end_date_filter"/></td></tr>
+
 
     </table>
+    <br/>
+    <div align="center">
+    <input type="submit" value="DisplayIssues" id="btnAction" name="btnAction"/>
+    <input type="submit" value="MainMenu" id="btnAction1" name="btnAction1"/>
+    </div>
 </form>
 <br/>
 <br/>
 <div style="text-align:center; width:100%">
-    <input type="submit" value="DisplayIssues" id="btnAction" name="btnAction"/>
-    <input type="submit" value="MainMenu" id="btnAction1" name="btnAction1"/>
-    <input type="hidden" name="LastSort" value="lastSort"/>
+
+<input type="hidden" name="LastSort" value="lastSort"/>
 </div>
 </body>
 </html>

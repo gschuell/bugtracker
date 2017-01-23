@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title><h1 th:text="#{app.name}"/>Data Center Issues Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
+          href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr  valign="top" colspan="1">
+        <td valign="top" colspan="1">
+            <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
+                 th:src="@{/images/RtiLogo2.gif}"/> </td>
+    </tr>
+</table>
+<hr/>
+
+<div style="text-align:center; width:100%">
+    <h1 th:text="#{app.display.users.heading}">Data Center Show Users</h1>
+
+</div>
+<table border="1" align="center">
+    <tr style="background-color: #CCCCFF"><td><b>Windows Login</b></td><td><b>Username</b></td>
+        <td><b>Email Address</b></td></tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.windowsLogin}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.emailAddress}"></td>
+    </tr>
+</table>
+
+<div style="text-align: center">
+    <br/>
+    <br/>
+    <a href="../DCBugs/" th:href="@{/DCBugs/}" class="btn btn-defaut"
+       th:style="@{btn btn-default}">Main Menu</a>
+</div>
+</body>
+</html>

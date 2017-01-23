@@ -1,60 +1,156 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="pragma" content="no-cache" />
 <head>
 
-    <title>Data Center Issues Administration</title>
-</head>
-<body text="black" leftmargin=5 topmargin=5>
+    <title><h1 th:text="#{app.name}"/>Data Center Issues Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+
+    <link th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
+          href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet" media="screen"/>
+
+    <style>
+        underline {
+            text-decoration: underline;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            border: 1px solid ;
+            text-align: left;
+            text-decoration: underline;
+            background-color: pink;
+            padding: 8px;
+        }
+
+        td {
+            border: 1px solid ;
+            text-align: left;
+            padding: 8px;
+            font-family: "Courier 10 Pitch";
+            font-size: small;
+        }
+        
+        a {
+            text-align: center;
+        }
+
+        th.nounder {
+            text-decoration: none;
+            text-align: center;
+        }
+
+        td.wide-col {
+            border: 1px solid ;
+            text-align: left;
+            padding: 8px;
+            width: 400px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #CCCCFF;
+        }
+    </style>
+</head>
+<body text="black" leftmargin="5" topmargin="5">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-    <tr>
-        <td valign="top" colspan=1 nowrap><img src="../static/images/RtiLogo2.gif" border="0" alt="" align=center></td>
+    <tr  valign="top" colspan="1">
+        <td valign="top" colspan="1">
+            <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
+                 th:src="@{/images/RtiLogo2.gif}"/> </td>
     </tr>
-
 </table>
-<hr>
-<div style="text-align:center; width:100%">
-    <h1>Practice Admin</h1>
-    <h2>Admin Issue List</h2>
-
-</div>
-<form name=adminDisplayIssue id=adminDisplayIssue method=post action="AdminDisplayIssues.asp">
-    <input type=hidden name="sortOrder" value="bug_id">
-    <table border=1 align="center">
-        <tr><td><b>Status Filter</b></td><td><select name="status_filter">
-            <option value="All">Display All</option>
-            <option selected value="Open">Open</option>
-            <option value="Pending">Pending</option>
-            <option value="AwaitingResponse">AwaitingResponse</option>
-            <option value="Resolved">Resolved</option>
-            <option value="ReWork">ReWork</option>
-            <option value="DC Reviewed">DC Reviewed</option>
-        </select>
-        </td></tr>
-        <tr><td><b>IssueID</b></td><td><input type=text name="issue_filter" value="All"></td></tr>
-        <tr><td><b>Provider Filter</b></td><td><input type=text maxlength=6 size=6 name="provider_filter"></td></tr>
-        <tr><td><b>Parent Document Number Filter</b></td><td><input type=text maxlength=16 size=16 name="pardoc_filter"></td></tr>
-        <tr><td><b>Payor Filter</b></td><td><input type=text maxlength=5 size=5 name="payor_filter"></td></tr>
-        <tr><td><b>Practice Filter</b></td><td><input type=text maxlength=3 size=3 name="practice_filter"></td></tr>
-        <tr><td><b>CheckNum Filter</b></td><td><input type=text maxlength=15 size=15 name="checknum_filter"></td></tr>
-        <tr><td><b>CheckDate Filter</b></td><td><input type=text maxlength=10 size=10 name="checkdate_filter"></td></tr>
-        <tr><td><b>Problem Type Filter</b></td><td><select type=text name="problem_type_filter"><option value=''></option>
-        <tr><td><b>Assigned To Filter</b></td><td><select type=text name="assigned_to_filter"><option value=''></option>
-        </select></td></tr>
-        <tr><td><b>Start Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="start_date_filter"></td></tr>
-        <tr><td><b>End Date Filter (mm/dd/yy)</b></td><td><input type=text size=12 maxlength=10 name="end_date_filter"></td></tr>
-
-    </table>
-</form>
-</div>
-<br>
-<br>
-<div style="text-align:center; width:100%">
-    <input type=submit value="DisplayIssues" id=btnAction name=btnAction>
-    <input type=submit value="MainMenu" id=btnAction name=btnAction>
-    <input type=hidden name=LastSort value="<%=LastSort%>">
-</div>
 </body>
+<hr/>
+<br/>
+
+<div style="text-align:center; width:100%">
+    <h1 th:text="#{app.department}">Data Center</h1>
+    <h2 th:text="#{app.display.list}">Admin Issues List</h2>
+
+</div>
+
+<table>
+    <!--
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:2%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:25%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:5%"/>
+    <col style="width:3%"/>
+    -->
+    <thead>
+        <th>IssueID</th>
+        <th>Provider ID</th>
+        <th>Parent<br/>Doc<br/> Num</th>
+        <th>Practice</th>
+        <th>Payor</th>
+        <th>Deposit<br/> Date</th>
+        <th>Check<br/>Num</th>
+        <th>Check<br/>Amount</th>
+        <th>Check<br/>Date</th>
+        <th>Resolution Type</th>
+        <th  class="nounder" >            Description         </th>
+        <th>Date<br/>Entered</th>
+        <th>Last<br/>Updated</th>
+        <th>Reported By</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assigned To</th>
+        <th>Issue<br/>Count</th>
+    </thead>
+    <tbody>
+        <tr th:each="issue : ${issuesList}">
+            <td>
+                <a th:href="@{'/DCBugs/adminupdateissue/' + ${issue.bugId}}">
+                    <span th:text="${issue.bugId}"></span><br/>Edit></a>
+            </td>
+            <td th:text="${issue.providerId}"></td>
+            <td th:text="${issue.pardocno}"></td>
+            <td th:text="${issue.practice}"></td>
+            <td th:text="${issue.extpayor}"></td>
+            <td th:text="${issue.depdt}"></td>
+            <td th:text="${issue.checknum}"></td>
+            <td th:text="${issue.checkamt}"></td>
+            <td th:text="${issue.checkDate}"></td>
+            <td th:text="${issue.problemType}"></td>
+            <td class="wide-col" th:text="${issue.bugComments}"></td>
+            <td th:text="${issue.bugEnteredDate}"></td>
+            <td th:text="${issue.lastUpdated}"></td>
+            <td th:text="${issue.reportedBy}"></td>
+            <td th:text="${issue.bugStatus}"></td>
+            <td th:text="${issue.bugPriority}"></td>
+            <td th:text="${issue.assignedTo}"></td>
+            <td th:text="${issue.issueCount}"></td>
+        </tr>
+    </tbody>
+</table>
+<div style="text-align: center">
+    <br/>
+    <br/>
+    <a href="../DCBugs/" th:href="@{/DCBugs/}" class="btn btn-defaut" role="button"
+       th:style="@{btn btn-default}">Main Menu</a>
+    &nbsp;&nbsp;
+    <a href="../DCBugs/getissues" th:href="@{/DCBugs/getissues}" class="btn btn-defaut" role="button"
+       th:style="@{btn btn-default}">Select Again</a>
+</div>
 </html>

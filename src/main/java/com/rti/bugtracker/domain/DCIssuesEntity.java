@@ -1,9 +1,6 @@
 package com.rti.bugtracker.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -61,6 +58,9 @@ public class DCIssuesEntity {
     private Date checkDate;
     @Column(name = "LAST_UPDATED", nullable = false)
     private Date lastUpdated;
+
+    @Transient
+    private long issueCount;
 
     public long getBugId() {
         return bugId;
@@ -201,7 +201,16 @@ public class DCIssuesEntity {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-/*
+
+    public long getIssueCount() {
+        return issueCount;
+    }
+
+    public void setIssueCount(long issueCount) {
+        this.issueCount = issueCount;
+    }
+
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
