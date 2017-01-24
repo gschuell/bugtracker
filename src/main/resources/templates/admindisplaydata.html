@@ -22,10 +22,12 @@
 
         th {
             border: 1px solid ;
-            text-align: left;
+            text-align: center;
             text-decoration: underline;
             background-color: pink;
-            padding: 8px;
+            padding: 1px;
+            font-family: "Courier 10 Pitch";
+            font-size: 12px;
         }
 
         td {
@@ -55,19 +57,47 @@
         tr:nth-child(even) {
             background-color: #CCCCFF;
         }
+        tbody {
+            display: block;
+        }
+        .header-cont {
+            width:100%;
+            position:fixed;
+            top:0px;
+        }
+        .header{
+            text-align: center;
+            font-size: 14px;
+            line-height: 30px;
+            height: 108px;
+            background: #ffffff;
+            color: black;
+            margin: 0px auto;
+            font-family: 'PT Sans', sans-serif;
+        }
+        .content {
+            width:100%;
+            background: #ffffff;
+            border: 1px solid #CCC;
+            height: auto;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body text="black" leftmargin="5" topmargin="5">
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-    <tr  valign="top" colspan="1">
-        <td valign="top" colspan="1">
-            <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
-                 th:src="@{/images/RtiLogo2.gif}"/> </td>
-    </tr>
-</table>
 </body>
+
+<div class="header-cont">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr  valign="top" colspan="1">
+            <td valign="top" colspan="1">
+                <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
+                     th:src="@{/images/RtiLogo2.gif}"/> </td>
+        </tr>
+    </table>
+
 <hr/>
 <br/>
 
@@ -75,6 +105,32 @@
     <h1 th:text="#{app.department}">Data Center</h1>
     <h2 th:text="#{app.display.list}">Admin Issues List</h2>
 
+</div>
+
+    <table>
+
+        <thead>
+        <th>IssueID</th>
+        <th>Provider ID</th>
+        <th>Parent<br/>Doc<br/> Num</th>
+        <th>Practice</th>
+        <th>Payor</th>
+        <th>Deposit<br/> Date</th>
+        <th>Check<br/>Num</th>
+        <th>Check<br/>Amount</th>
+        <th>Check<br/>Date</th>
+        <th>Resolution Type</th>
+        <th  class="nounder" >            Description         </th>
+        <th>Date<br/>Entered</th>
+        <th>Last<br/>Updated</th>
+        <th>Reported By</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assigned To</th>
+        <th>Issue<br/>Count</th>
+        </thead>
+
+    </table>
 </div>
 
 <table>
@@ -98,26 +154,7 @@
     <col style="width:5%"/>
     <col style="width:3%"/>
     -->
-    <thead>
-        <th>IssueID</th>
-        <th>Provider ID</th>
-        <th>Parent<br/>Doc<br/> Num</th>
-        <th>Practice</th>
-        <th>Payor</th>
-        <th>Deposit<br/> Date</th>
-        <th>Check<br/>Num</th>
-        <th>Check<br/>Amount</th>
-        <th>Check<br/>Date</th>
-        <th>Resolution Type</th>
-        <th  class="nounder" >            Description         </th>
-        <th>Date<br/>Entered</th>
-        <th>Last<br/>Updated</th>
-        <th>Reported By</th>
-        <th>Status</th>
-        <th>Priority</th>
-        <th>Assigned To</th>
-        <th>Issue<br/>Count</th>
-    </thead>
+
     <tbody>
         <tr th:each="issue : ${issuesList}">
             <td>

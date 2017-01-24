@@ -86,6 +86,7 @@ public class DBUtils {
 
         if (!searchArgs.getIssueId().equals("All")) {
 
+            issuesList = dcIssues.findOneSingleIssue(Long.parseLong(searchArgs.getIssueId()));
         }
         else if (searchArgs.getStatus().equals("Display All"))
         {

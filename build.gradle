@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
+        springBootVersion = '1.4.2.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -22,7 +22,7 @@ configure(allprojects) {
     apply plugin: 'war'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    apply plugin: 'spring-boot'
+    apply plugin: 'org.springframework.boot'
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
@@ -30,7 +30,7 @@ configure(allprojects) {
 }
 
 jar {
-    baseName = 'bug-tracker'
+    baseName = 'bugtracker'
     version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8

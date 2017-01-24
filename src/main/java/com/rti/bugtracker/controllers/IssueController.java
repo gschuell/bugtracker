@@ -84,7 +84,7 @@ public class IssueController {
         return model;
     }
 
-    @RequestMapping(value = "/updateIssue", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateIssue", method = RequestMethod.POST)
     public String updateIssue(@ModelAttribute DCIssuesEntity issue) {
 
 
