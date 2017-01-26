@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class DCCategoriesEntity {
     @Id
     @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 0)
-    private Long categoryId;
+    private int categoryId;
 
 
     @Column(name = "PROJECT_ID", nullable = false, precision = 0)
@@ -21,11 +21,11 @@ public class DCCategoriesEntity {
     private String categoryName;
 
 
-    public Long getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -48,24 +48,21 @@ public class DCCategoriesEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof DCCategoriesEntity)) return false;
 
         DCCategoriesEntity that = (DCCategoriesEntity) o;
 
-        if (categoryId != null ? !categoryId.equals(that.categoryId) : that.categoryId != null)
+        if (getCategoryId() != that.getCategoryId()) return false;
+        if (getProjectId() != null ? !getProjectId().equals(that.getProjectId()) : that.getProjectId() != null)
             return false;
-        if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
-        if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null)
-            return false;
-
-        return true;
+        return getCategoryName() != null ? getCategoryName().equals(that.getCategoryName()) : that.getCategoryName() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = categoryId != null ? categoryId.hashCode() : 0;
-        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
-        result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
+        int result = getCategoryId();
+        result = 31 * result + (getProjectId() != null ? getProjectId().hashCode() : 0);
+        result = 31 * result + (getCategoryName() != null ? getCategoryName().hashCode() : 0);
         return result;
     }
 }

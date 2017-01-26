@@ -84,7 +84,7 @@ public class IssueController {
         return model;
     }
 
-    @RequestMapping(value = "/updateIssue", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateIssue", method = RequestMethod.PUT)
     public String updateIssue(@ModelAttribute DCIssuesEntity issue) {
 
 
@@ -109,6 +109,8 @@ public class IssueController {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("showresolutiontypes");
+        List<DCCategoriesEntity> categories = dcCategory.findAll();
+        categories.stream().
         model.addObject("resolutions", dcCategory.findAll());
         return model;
     }

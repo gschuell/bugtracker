@@ -10,8 +10,10 @@ import java.util.List;
  */
 public interface DCCategory extends JpaRepository<DCCategoriesEntity, Long>{
 
-    @Query("select Distinct u.categoryName from #{#entityName} u order by u.categoryName")
+    @Query("select u.categoryName from #{#entityName} u order by u.categoryName")
     public List<String> findCategoryNames();
+
+    //public List<DCCategoriesEntity> findAllOrderByCategoryId();
 
 
 }

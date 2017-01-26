@@ -2,7 +2,6 @@ package com.rti.bugtracker.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,18 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/DCBugs")
-public class IndexController implements ErrorController {
+public class IndexController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private static final String PATH = "/error";
-
+   // private static final String PATH = "/error";
+/*
     @RequestMapping("/error")
     public String error() {
 
         return "Error Handling";
     }
-
+*/
     @RequestMapping(value = "/", method= RequestMethod.GET)
     public ModelAndView getIndex(ModelAndView model) {
         log.info("About to load home page");
@@ -34,8 +33,8 @@ public class IndexController implements ErrorController {
         return model;
     }
 
-    @Override
-    public String getErrorPath() {
-        return PATH;
-    }
+  //  @Override
+  //  public String getErrorPath() {
+    //    return PATH;
+   // }
 }

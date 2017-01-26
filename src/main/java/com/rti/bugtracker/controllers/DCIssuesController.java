@@ -161,7 +161,8 @@ public class DCIssuesController {
         }
 
         if (catNames.size() > 1) {
-            return catNames.stream().filter(Objects::nonNull).sorted((String e1, String e2) -> (e1.compareToIgnoreCase(e2)))
+            return catNames.stream().filter(Objects::nonNull)
+                    .sorted((String e1, String e2) -> (e1.compareToIgnoreCase(e2)))
                     .collect(Collectors.toList());
         }
         return catNames;
@@ -173,6 +174,7 @@ public class DCIssuesController {
 
         List<DCCategoriesEntity> resolutions = dcCategory.findAll();
         return resolutions.stream().filter(Objects::nonNull)
+                .sorted((DCCategoriesEntity e1, DCCategoriesEntity e2) -> e1.getCategoryId() - e2.getCategoryId())
                 .collect(Collectors.toList());
 
     }
