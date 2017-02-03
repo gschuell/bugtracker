@@ -110,8 +110,8 @@ public class IssueController {
         ModelAndView model = new ModelAndView();
         model.setViewName("showresolutiontypes");
         List<DCCategoriesEntity> categories = dcCategory.findAll();
-        categories.stream().
-        model.addObject("resolutions", dcCategory.findAll());
+        model.addObject("resolutions", categories);
+
         return model;
     }
 
