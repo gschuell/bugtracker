@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,28 +72,28 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/adminupdateissue/{issueId}", method = RequestMethod.GET )
-    public ModelAndView displayUpdatePage(@PathVariable long issueId) {
-        ModelAndView model = new ModelAndView("adminupdateissue");
-        DCIssuesEntity issue = dcIssues.findOne(issueId);
-        model.addObject("problems",  dcIssues.findProblemTypes());
-        model.addObject("assignedUsers", dcIssues.findAssignedUsers());
-        model.addObject("statuses", BugStatusValues.getStatuses());
-        model.addObject("priority", BugStatusValues.getPriority());
-        model.addObject("userId", System.getProperty("user.name"));
-        model.addObject("issueData", issue);
+    public String displayUpdatePage(@PathVariable long issueId, Model model) {
 
-        return model;
+        model.addAttribute("issueData",dcIssues.findOne(issueId));
+        model.addAttribute("problems",  dcIssues.findProblemTypes());
+        model.addAttribute("assignedUsers", dcIssues.findAssignedUsers());
+        model.addAttribute("developerNames", dcDeveloperNames.findDeveloperNames());
+        model.addAttribute("statuses", BugStatusValues.getStatuses());
+        model.addAttribute("priority", BugStatusValues.getPriority());
+        model.addAttribute("userId", System.getProperty("user.name"));
+
+        return "redirect:/adminupdateissue";
     }
 
-    @RequestMapping(value = "/updateIssue", method = RequestMethod.PUT)
-    public String updateIssue(@ModelAttribute DCIssuesEntity issue) {
+    @RequestMapping(value = "/adminupdateissue/update", method = RequestMethod.POST)
+    public String updateIssue(DCIssuesEntity issueData) {
 
 
        // DCIssuesData issue = (DCIssuesData)modelData.get("issueData");
-        log.info("About to update issue {}", issue.getBugId());
-        dcIssues.save(issue);
+        log.info("About to update issue {}", issueData.getBugId());
+        dcIssues.save(issueData);
 
-        return "redirect:/getissues"; // for now
+        return "redirect:/DCBugs/getissues"; // for now
     }
 
     @RequestMapping(value = "/showusers", method = RequestMethod.GET)

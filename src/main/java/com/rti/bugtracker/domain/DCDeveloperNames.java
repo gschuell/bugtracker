@@ -10,4 +10,7 @@ import java.util.List;
  */
 public interface DCDeveloperNames extends JpaRepository<DCDeveloperNamesEntity, String>{
 
+    @Query("select u.name from #{#entityName} u order by u.name")
+    public List<String> findDeveloperNames();
+
 }

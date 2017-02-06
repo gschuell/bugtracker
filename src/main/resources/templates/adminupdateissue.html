@@ -103,8 +103,8 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
     <h2 th:text="#{app.display.issues.message}">Admin Display Issues</h2>
 
 </div>
-<form name="adminUpdateIssue" id="updateIssue" method="put"
-      action="updateIssue" th:action="@{/DCBugs/updateIssue}" th:object="${issueData}">
+<form name="adminUpdateIssue" id="updateIssue" method="POST"
+        th:action="@{/adminupdateissue/update}" th:object="${issueData}">
 
     <table border="1" align="center">
 
@@ -153,6 +153,13 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
         <tr><td><b>Description</b><br/><br/><input type="button" class="btn btn-default" value="Add Comment" onclick="addComment('userId');"/></td>
         <td><textarea readonly="true" rows="10" cols="40" th:field="*{bugComments}" maxlength="2000"
                    wrap="soft" name="comment_filter"/></td></tr>
+        <tr><td><b>Reported By</b></td><td>
+            <select  type="text" th:field="*{reportedBy}" name="reported_by_filter">
+                <option value="">Nobody</option>
+                <option th:each="developer : ${developerNames}"
+                        th:value="${developer}"
+                        th:text="${developer}">${developer}</option>
+            </select></td></tr>
     </table>
     <br/>
 
