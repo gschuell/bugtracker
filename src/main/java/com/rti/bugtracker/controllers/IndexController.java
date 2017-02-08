@@ -25,12 +25,12 @@ public class IndexController {
     }
 */
     @RequestMapping(value = "/", method= RequestMethod.GET)
-    public ModelAndView getIndex(ModelAndView model) {
+    public String getIndex() {
         log.info("About to load home page");
-        if (model.getView() == null) {
-            model = new ModelAndView("index");
-        }
-        return model;
+       // if (model.getView() == null) {
+       //     model = new ModelAndView("index");
+       // }
+        return "index";
     }
 
   //  @Override

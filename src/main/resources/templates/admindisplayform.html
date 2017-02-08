@@ -72,7 +72,7 @@
 
 </div>
 <form name="adminDisplayIssue" id="adminDisplayIssue" method="post"
-      action="admindisplaydata" th:action="@{/DCBugs/admindisplaydata}" th:object="${admindisplayform}">
+        th:action="@{/admindisplaydata}" th:object="${admindisplayform}">
 
     <table border="1" align="center">
         <tr><td><b>Status Filter</b></td><td><select name="status_filter" th:field="*{status}">

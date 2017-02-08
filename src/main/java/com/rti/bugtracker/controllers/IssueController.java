@@ -42,33 +42,35 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/getissues", method= RequestMethod.GET, produces="application/json")
-    public ModelAndView adminDisplayFormPage(ModelAndView model) {
+    public String adminDisplayFormPage(Model model) {
 
-        if (model.getView() == null) {
-            model = new ModelAndView("admindisplayform");
-        }
+
         log.info("About to get problem types and assigned users");
-        model.addObject("problems",  dcCategory.findCategoryNames());
-        model.addObject("assignedUsers", dcIssues.findAssignedUsers());
-        model.addObject("statuses", BugStatusValues.getStatuses());
-        model.addObject("admindisplayform", new AdminDisplayForm());
+        model.addAttribute("problems",  dcCategory.findCategoryNames());
+        model.addAttribute("assignedUsers", dcIssues.findAssignedUsers());
+        model.addAttribute("statuses", BugStatusValues.getStatuses());
+        model.addAttribute("admindisplayform", new AdminDisplayForm());
 
 
-        return model;
+        return "/admindisplayform";
     }
 
     @RequestMapping(value = "/admindisplaydata", method = RequestMethod.POST )
-    public ModelAndView displayIssuesData(@ModelAttribute(value = "admindisplayform)") AdminDisplayForm issuesForm) {
-        ModelAndView model = new ModelAndView("admindisplaydata");
+    public String displayIssuesData(Model model) {
+
+        log.info("Entering displayIssueData method");
+
+
+        AdminDisplayForm issuesForm = (AdminDisplayForm)model.asMap().get("admindisplayform");
         List<DCIssuesEntity> issues = dbUtils.getIssuesData(issuesForm);
         // Don't filter data is an issue id was selected as only a singleton is returned
         if (issuesForm.getIssueId().equals("All")) {
             issues = dbUtils.filterData(issues, issuesForm);
         }
 
-        model.addObject("issuesList", issues);
+        model.addAttribute("issuesList", issues);
 
-        return model;
+        return "/DCBugs/admindisplaydata";
     }
 
     @RequestMapping(value = "/adminupdateissue/{issueId}", method = RequestMethod.GET )
@@ -97,23 +99,22 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/showusers", method = RequestMethod.GET)
-    public ModelAndView showUsers() {
+    public String showUsers(Model model) {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("showusers");
-        model.addObject("users", dcDeveloperNames.findAll());
-        return model;
+
+        model.addAttribute("users", dcDeveloperNames.findAll());
+        return "/showusers";
     }
 
     @RequestMapping(value = "/showresolutiontypes", method = RequestMethod.GET)
-    public ModelAndView showResolutionTypes() {
+    public String showResolutionTypes(Model model) {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("showresolutiontypes");
+
+
         List<DCCategoriesEntity> categories = dcCategory.findAll();
-        model.addObject("resolutions", categories);
+        model.addAttribute("resolutions", categories);
 
-        return model;
+        return "/showresolutiontypes";
     }
 
 
