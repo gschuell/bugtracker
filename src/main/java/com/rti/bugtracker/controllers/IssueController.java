@@ -8,11 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -56,12 +54,12 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/admindisplaydata", method = RequestMethod.POST )
-    public String displayIssuesData(Model model) {
+    public String displayIssuesData(AdminDisplayForm issuesForm, Model model) {
 
         log.info("Entering displayIssueData method");
 
 
-        AdminDisplayForm issuesForm = (AdminDisplayForm)model.asMap().get("admindisplayform");
+       // AdminDisplayForm issuesForm = (AdminDisplayForm)model.asMap().get("admindisplayform");
         List<DCIssuesEntity> issues = dbUtils.getIssuesData(issuesForm);
         // Don't filter data is an issue id was selected as only a singleton is returned
         if (issuesForm.getIssueId().equals("All")) {
@@ -70,7 +68,7 @@ public class IssueController {
 
         model.addAttribute("issuesList", issues);
 
-        return "/DCBugs/admindisplaydata";
+        return "/admindisplaydata";
     }
 
     @RequestMapping(value = "/adminupdateissue/{issueId}", method = RequestMethod.GET )
