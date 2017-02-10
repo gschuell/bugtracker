@@ -104,7 +104,7 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
 
 </div>
 <form name="adminUpdateIssue" id="updateIssue" method="POST"
-        th:action="@{/adminupdateissue/update}" th:object="${issueData}">
+        th:action="@{/DCBugs/adminupdateissue/update}" th:object="${issueData}">
 
     <table border="1" align="center">
 
@@ -147,6 +147,7 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
                                                                     maxlength="16" size="16" name="pardoc_filter"/></td></tr>
         <tr><td><b>Payor</b></td><td><input type="text" th:field="*{extpayor}" maxlength="5" size="5" name="payor_filter"/></td></tr>
         <tr><td><b>Practice</b></td><td><input type="text" th:field="*{practice}" maxlength="3" size="3" name="practice_filter"/></td></tr>
+        <tr><td><b>Deposit Date</b></td><td><input type="date" th:field="*{depdt}" maxlength="10" size="10" name="depdt_filter"/></td></tr>
         <tr><td><b>Check Number</b></td><td><input type="text" th:field="*{checknum}" maxlength="20" size="20" name="checknum_filter"/></td></tr>
         <tr><td><b>Check Amount</b></td><td><input type="text" th:field="*{checkamt}" maxlength="10" size="10" name="checkamt_filter"/></td></tr>
         <tr><td><b>Check Date</b></td><td><input type="date" th:field="*{checkDate}" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
@@ -164,8 +165,8 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
     <br/>
 
     <div style="text-align: center">
-    <a href="../DCBugs/updateIssue" th:href="@{/DCBugs/updateIssue}" class="myButton" role="button"
-       th:style="@{btn btn-info}">Update Issue</a>
+    <input type="submit" class="myButton" role="button"
+       th:style="@{btn btn-info}"/>
     &nbsp;&nbsp;
     </div>
 </form>

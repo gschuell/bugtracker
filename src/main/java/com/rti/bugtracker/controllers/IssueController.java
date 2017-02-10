@@ -50,7 +50,7 @@ public class IssueController {
         model.addAttribute("admindisplayform", new AdminDisplayForm());
 
 
-        return "/admindisplayform";
+        return "admindisplayform";
     }
 
     @RequestMapping(value = "/admindisplaydata", method = RequestMethod.POST )
@@ -68,7 +68,7 @@ public class IssueController {
 
         model.addAttribute("issuesList", issues);
 
-        return "/admindisplaydata";
+        return "admindisplaydata";
     }
 
     @RequestMapping(value = "/adminupdateissue/{issueId}", method = RequestMethod.GET )
@@ -82,7 +82,7 @@ public class IssueController {
         model.addAttribute("priority", BugStatusValues.getPriority());
         model.addAttribute("userId", System.getProperty("user.name"));
 
-        return "/adminupdateissue";
+        return "adminupdateissue";
     }
 
     @RequestMapping(value = "/adminupdateissue/update", method = RequestMethod.POST)
@@ -101,7 +101,7 @@ public class IssueController {
 
 
         model.addAttribute("users", dcDeveloperNames.findAll());
-        return "/showusers";
+        return "showusers";
     }
 
     @RequestMapping(value = "/showresolutiontypes", method = RequestMethod.GET)
@@ -112,7 +112,13 @@ public class IssueController {
         List<DCCategoriesEntity> categories = dcCategory.findAll();
         model.addAttribute("resolutions", categories);
 
-        return "/showresolutiontypes";
+        return "showresolutiontypes";
+    }
+
+    @RequestMapping(value = "/addcategory", method = RequestMethod.GET)
+    public String addCategory(Model mdel) {
+
+        return "category/new";
     }
 
 
