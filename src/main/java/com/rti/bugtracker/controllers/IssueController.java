@@ -82,7 +82,7 @@ public class IssueController {
         model.addAttribute("priority", BugStatusValues.getPriority());
         model.addAttribute("userId", System.getProperty("user.name"));
 
-        return "redirect:/adminupdateissue";
+        return "/adminupdateissue";
     }
 
     @RequestMapping(value = "/adminupdateissue/update", method = RequestMethod.POST)
