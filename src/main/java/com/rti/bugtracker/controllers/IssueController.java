@@ -76,7 +76,7 @@ public class IssueController {
 
         model.addAttribute("issueData",dcIssues.findOne(issueId));
         model.addAttribute("problems",  dcIssues.findProblemTypes());
-        model.addAttribute("assignedUsers", dcIssues.findAssignedUsers());
+        model.addAttribute("assignedUsers", dcDeveloperNames.findDeveloperNames());
         model.addAttribute("developerNames", dcDeveloperNames.findDeveloperNames());
         model.addAttribute("statuses", BugStatusValues.getStatuses());
         model.addAttribute("priority", BugStatusValues.getPriority());
@@ -116,9 +116,17 @@ public class IssueController {
     }
 
     @RequestMapping(value = "/addcategory", method = RequestMethod.GET)
-    public String addCategory(Model mdel) {
+    public String addCategory(Model model) {
 
-        return "category/new";
+        model.addAttribute("categoryData", new DCCategoriesEntity());
+        return "addcategory";
+    }
+
+    @RequestMapping(value = "/category/new", method = RequestMethod.POST)
+    public String createCategory(DCCategoriesEntity category) {
+
+        dcCategory.save(category);
+        return "redirect:/DCBugs/showresolutiontypes";
     }
 
 

@@ -129,7 +129,7 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
         </select></td></tr>
         <tr><td><b>Assigned To</b></td><td>
             <select  type="text" th:field="*{assignedTo}" name="assigned_to_filter">
-                <option value="">Nobody</option>
+                <option value=" ">Nobody</option>
                 <option th:each="assignedUser : ${assignedUsers}"
                         th:value="${assignedUser}"
                         th:text="${assignedUser}">${assignedUser}</option>
@@ -156,7 +156,7 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
                    wrap="soft" name="comment_filter"/></td></tr>
         <tr><td><b>Reported By</b></td><td>
             <select  type="text" th:field="*{reportedBy}" name="reported_by_filter">
-                <option value="">Nobody</option>
+                <option value=" ">Nobody</option>
                 <option th:each="developer : ${developerNames}"
                         th:value="${developer}"
                         th:text="${developer}">${developer}</option>
