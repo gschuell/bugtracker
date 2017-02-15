@@ -151,7 +151,7 @@ document.updateIssue["comments"].value =  document.updateIssue["comments"].value
         <tr><td><b>Check Number</b></td><td><input type="text" th:field="*{checknum}" maxlength="20" size="20" name="checknum_filter"/></td></tr>
         <tr><td><b>Check Amount</b></td><td><input type="text" th:field="*{checkamt}" maxlength="10" size="10" name="checkamt_filter"/></td></tr>
         <tr><td><b>Check Date</b></td><td><input type="date" th:field="*{checkDate}" maxlength="10" size="10" name="checkdate_filter"/></td></tr>
-        <tr><td><b>Description</b><br/><br/><input type="button" class="btn btn-default" value="Add Comment" onclick="addComment('userId');"/></td>
+        <tr><td><b>Description</b><br/><br/><input type="button" class="btn btn-default" value="Add Comment" th:onclick="addComment('userId');"/></td>
         <td><textarea readonly="true" rows="10" cols="40" th:field="*{bugComments}" maxlength="2000"
                    wrap="soft" name="comment_filter"/></td></tr>
         <tr><td><b>Reported By</b></td><td>
