@@ -55,6 +55,8 @@ final def var = dependencies {
     compile("org.springframework.boot:spring-boot-starter-parent:${springBootVersion}")
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-mobile')
+    compile 'org.webjars:bootswatch:3.3.7'
+
     //compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
     optional "org.springframework.boot:spring-boot-configuration-processor"
