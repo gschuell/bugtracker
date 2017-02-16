@@ -124,7 +124,7 @@ public class IssueController {
 
     @RequestMapping(value = "/category/new", method = RequestMethod.POST)
     public String createCategory(DCCategoriesEntity category) {
-
+        log.info("About to save category {}", category.getCategoryName());
         dcCategory.save(category);
         return "redirect:/DCBugs/showresolutiontypes";
     }

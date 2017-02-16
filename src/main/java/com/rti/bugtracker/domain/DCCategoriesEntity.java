@@ -9,11 +9,13 @@ import javax.persistence.*;
 @Table(name = "DC_CATEGORIES", schema = "BUGSADMIN", catalog = "")
 public class DCCategoriesEntity {
     @Id
-    @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 0)
-    private int categoryId;
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_DC_CATEGORIES")
+    @SequenceGenerator(name="SEQ_DC_CATEGORIES", sequenceName="SEQ_DC_CATEGORIES", allocationSize = 1)
+    @Column(name = "DC_CATEGORY_ID", nullable = false, precision = 10)
+    private Long categoryId;
 
 
-    @Column(name = "PROJECT_ID", nullable = false, precision = 0)
+    @Column(name = "PROJECT_ID", nullable = true, precision = 10)
     private Long projectId;
 
 
@@ -21,11 +23,11 @@ public class DCCategoriesEntity {
     private String categoryName;
 
 
-    public int getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -52,7 +54,8 @@ public class DCCategoriesEntity {
 
         DCCategoriesEntity that = (DCCategoriesEntity) o;
 
-        if (getCategoryId() != that.getCategoryId()) return false;
+        if (getCategoryId() != null ? !getCategoryId().equals(that.getCategoryId()) : that.getCategoryId() != null)
+            return false;
         if (getProjectId() != null ? !getProjectId().equals(that.getProjectId()) : that.getProjectId() != null)
             return false;
         return getCategoryName() != null ? getCategoryName().equals(that.getCategoryName()) : that.getCategoryName() == null;
@@ -60,7 +63,7 @@ public class DCCategoriesEntity {
 
     @Override
     public int hashCode() {
-        int result = getCategoryId();
+        int result = getCategoryId() != null ? getCategoryId().hashCode() : 0;
         result = 31 * result + (getProjectId() != null ? getProjectId().hashCode() : 0);
         result = 31 * result + (getCategoryName() != null ? getCategoryName().hashCode() : 0);
         return result;

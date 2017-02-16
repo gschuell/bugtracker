@@ -93,7 +93,7 @@
     <tr  valign="top" colspan="1">
         <td valign="top" colspan="1">
             <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
-                 th:src="@{/images/RtiLogo2.gif}"/> </td>
+                 th:src="@{../static/images/RtiLogo2.gif}"/> </td>
     </tr>
 </table>
 <hr/>
@@ -107,8 +107,9 @@
     th:action="@{/DCBugs/category/new}" th:object="${categoryData}">
     <input type="submit" value="Add Category" id="btnAction" name="btnAction" th:style="@{btn btn-info}"/>
 <table>
-    <tr><td><b>Category Name</b></td><td><input type="text" readonly="readonly"
+    <tr><td><b>Category Name</b></td><td><input type="text"
                                                th:field="*{categoryName}" name="categoryname"/></td></tr>
+    <tr><td><input type="hidden" th:field="*{projectId}" name="projectId"/></td></tr>
 </table>
 </form>
 <a href="../DCBugs/" th:href="@{/DCBugs/}" class="myButton">Main Menu</a>

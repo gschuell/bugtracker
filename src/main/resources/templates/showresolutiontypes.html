@@ -27,7 +27,8 @@
     <tr style="background-color: #CCCCFF"><td><b>Category ID</b></td>
         <td><b>Category Name</b></td></tr>
     <tr th:each="resolution : ${resolutions}">
-        <td th:text="${resolution.categoryId}"></td>
+        <a th:href="@{'/DCBugs/deletecategory/' + ${resolution.categoryId}}">
+            <span th:text="${resolution.categoryId}"></span><br/>Delete></a>
         <td th:text="${resolution.categoryName}"></td>
     </tr>
 </table>
