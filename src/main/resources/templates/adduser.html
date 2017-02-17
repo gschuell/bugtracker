@@ -1,10 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+    <title><h1 th:text="#{app.name}"/>Data Center Issues Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" media="screen"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+            th:src="@{/js/jquery-3.1.1/jquery.min.js}"></script>
+
+
+    <style>
+
+        .myButton {
+            -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            box-shadow:inset 0px 1px 0px 0px #ffffff;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+            background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+            background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+            background-color:#ffffff;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #dcdcdc;
+            display:inline-block;
+            cursor:pointer;
+            color:#666666;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffffff;
+        }
+        .myButton:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+            background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+            background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+            background-color:#f6f6f6;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+
+    </style>
+
+</head>
+<body text="black" leftmargin="5" topmargin="5">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr  valign="top" colspan="1">
+        <td valign="top" colspan="1">
+            <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
+                 th:src="@{../static/images/RtiLogo2.gif}"/> </td>
+    </tr>
+</table>
+<hr/>
+
+<div style="text-align:center; width:100%">
+    <h1 th:text="#{app.display.name}">Practice Admin</h1>
+    <h2 th:text="#{app.display.issues.message}">Admin Display Issues</h2>
+
+</div>
+<form name="addUser" id="addUser" method="post"
+      th:action="@{/DCBugs/user/new}" th:object="${userData}">
+
+    <table border="1" cellPadding="1" style="text-align:center">
+        <thead>
+        <tr style="background-color: #CCCCFF">
+            <td><b>Windows Login</b></td>
+            <td><b>Username</b></td>
+            <td><b>Email Address</b></td>
+        </tr>
+        </thead>
+        <tr>
+            <td><input type="text" th:field="*{windowsLogin}" name="windowsLogin"/></td>
+            <td><input type="text" th:field="*{name}" name="name"/></td>
+            <td><input type="text" th:field="*{emailAddress}" name="emailAddress"/></td>
+        </tr>
+    </table>
+    <input type="submit" value="Add User" id="btnAction" name="btnAction" th:style="@{btn btn-info}"/>
+</form>
+<a href="../DCBugs/" th:href="@{/DCBugs/}" class="myButton">Main Menu</a>
 </body>
 </html>

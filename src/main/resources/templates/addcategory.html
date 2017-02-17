@@ -9,35 +9,7 @@
           href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet" media="screen"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
             th:src="@{/js/jquery-3.1.1/jquery.min.js}"></script>
-    <script>
-        function open_new_window()
-        {
-            dlg = window.open ("uploadform.asp?bugId=" + document.getElementById("bugId").value,"AttachFile" , "width=800,height=400, toolbar=no,location=no,directories=no, status=no,menubar=no,scrollbars=no,resizable=no")
-        }
 
-        function open_new_window2()
-        {
-
-            dlg = window.open ("","NewWindowName2","width=400,height=400,toolbar=no,location=no, directories=no,status=no,menubar=no,scrollbars=no,resizable=no")
-            dlg.document.write ("<BODY bgColor='#FFFFFF'>")
-            dlg.document.write ("<CENTER>This is text that has been added on the fly using Javascript.</CENTER>")
-            dlg.document.write ("</BODY>")
-        }
-
-        function addComment(userid)
-        {
-            var comments = prompt("Comment: ", "Type Comment Here");
-            var dt = new Date();
-�� var theMonth = dt.getMonth() + 1;
-�� var theDay = dt.getDate();
-�� var theYear = dt.getYear();
-�� var theHour = dt.getHours();
-�� var theMin = dt.getMinutes();
-�� var theSec = dt.getSeconds();
-�� var dateTimeString = userid + " " + theMonth + "/" + theDay + "/" + theYear + " " + theHour + ":" + theMin + ":" + theSec;
-            document.updateIssue["comments"].value =  document.updateIssue["comments"].value + "\n" + dateTimeString + ": " + comments;
-        }
-    </script>
 
     <style>
 
@@ -93,7 +65,7 @@
     <tr  valign="top" colspan="1">
         <td valign="top" colspan="1">
             <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
-                 th:src="@{../static/images/RtiLogo2.gif}"/> </td>
+                 th:src="@{/static/images/RtiLogo2.gif}"/> </td>
     </tr>
 </table>
 <hr/>
@@ -105,12 +77,13 @@
 </div>
 <form name="addCategory" id="addCategory" method="post"
     th:action="@{/DCBugs/category/new}" th:object="${categoryData}">
-    <input type="submit" value="Add Category" id="btnAction" name="btnAction" th:style="@{btn btn-info}"/>
+
 <table>
     <tr><td><b>Category Name</b></td><td><input type="text"
                                                th:field="*{categoryName}" name="categoryname"/></td></tr>
     <tr><td><input type="hidden" th:field="*{projectId}" name="projectId"/></td></tr>
 </table>
+    <input type="submit" value="Add Category" id="btnAction" name="btnAction" th:style="@{btn btn-info}"/>
 </form>
 <a href="../DCBugs/" th:href="@{/DCBugs/}" class="myButton">Main Menu</a>
 </body>

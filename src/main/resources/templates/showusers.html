@@ -14,7 +14,7 @@
     <tr  valign="top" colspan="1">
         <td valign="top" colspan="1">
             <img src="../static/images/RtiLogo2.gif" border="0" alt="Somethin's Wrong!" align="center"
-                 th:src="@{/images/RtiLogo2.gif}"/> </td>
+                 th:src="@{/static/images/RtiLogo2.gif}"/> </td>
     </tr>
 </table>
 <hr/>
@@ -24,12 +24,16 @@
 
 </div>
 <table border="1" align="center">
+    <thead>
     <tr style="background-color: #CCCCFF"><td><b>Windows Login</b></td><td><b>Username</b></td>
-        <td><b>Email Address</b></td></tr>
+        <td><b>Email Address</b></td><td><b>Action</b></td></tr>
+    </thead>
+
     <tr th:each="user : ${users}">
         <td th:text="${user.windowsLogin}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.emailAddress}"></td>
+        <td><a th:href="@{'/DCBugs/deleteuser/' + ${user.name}}"><br/>Delete</a></td>
     </tr>
 </table>
 

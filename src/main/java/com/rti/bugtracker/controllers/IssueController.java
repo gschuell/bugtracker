@@ -93,7 +93,7 @@ public class IssueController {
         log.info("About to update issue {}", issueData.getBugId());
         dcIssues.save(issueData);
 
-        return "redirect:/DCBugs/getissues"; // for now
+        return "redirect:/DCBugs/admindisplaydata"; // for now
     }
 
     @RequestMapping(value = "/showusers", method = RequestMethod.GET)
@@ -104,10 +104,30 @@ public class IssueController {
         return "showusers";
     }
 
+    @RequestMapping(value = "/adduser", method = RequestMethod.GET)
+    public String addUser(Model model) {
+
+        model.addAttribute("userData", new DCDeveloperNamesEntity());
+        return "adduser";
+    }
+
+    @RequestMapping(value = "/user/new", method = RequestMethod.POST)
+    public String newUser(DCDeveloperNamesEntity user) {
+        log.info("About to save user {}", user.getName());
+        dcDeveloperNames.save(user);
+        return "redirect:/DCBugs/showusers";
+    }
+
+    @RequestMapping(value = "/deleteuser/{name}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable String name, Model model) {
+        DCDeveloperNamesEntity user = dcDeveloperNames.findOne(name);
+        log.info("About to delete User {}", user.getName());
+        dcDeveloperNames.delete(user);
+        return "redirect:/DCBugs/showusers";
+    }
+
     @RequestMapping(value = "/showresolutiontypes", method = RequestMethod.GET)
     public String showResolutionTypes(Model model) {
-
-
 
         List<DCCategoriesEntity> categories = dcCategory.findAll();
         model.addAttribute("resolutions", categories);
@@ -128,6 +148,15 @@ public class IssueController {
         dcCategory.save(category);
         return "redirect:/DCBugs/showresolutiontypes";
     }
+
+    @RequestMapping(value = "/deletecategory/{categoryId}", method = RequestMethod.GET)
+    public String deleteCategory(@PathVariable long categoryId, Model model) {
+        DCCategoriesEntity category = dcCategory.findOne(categoryId);
+        log.info("About to delete category {}, {}", category.getCategoryId(), category.getCategoryName());
+        dcCategory.delete(category);
+        return "redirect:/DCBugs/showresolutiontypes";
+    }
+
 
 
 }

@@ -164,7 +164,7 @@
         <tr th:each="issue : ${issuesList}">
             <td>
                 <a th:href="@{'/DCBugs/adminupdateissue/' + ${issue.bugId}}">
-                    <span th:text="${issue.bugId}"></span><br/>Edit></a>
+                    <span th:text="${issue.bugId}"></span><br/>Edit</a>
             </td>
             <td th:text="${issue.providerId}"></td>
             <td th:text="${issue.pardocno}"></td>
